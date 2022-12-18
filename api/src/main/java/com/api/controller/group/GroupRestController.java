@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/group")
 public class GroupRestController {
 
-	//그룹 생성
+    //그룹 생성
     @PostMapping
     public Object group() {
     	return null;
@@ -40,7 +40,7 @@ public class GroupRestController {
     @DeleteMapping("/{groupId}/delete")
     public Object groupDelete() {
     	return null;
-    }ß
+    }
 
     //그룹 포스팅 작성
     @PostMapping("/{groupId}/post")
@@ -55,18 +55,18 @@ public class GroupRestController {
     }
 
     //그룹 특정 포스팅 조회
-    @GetMapping("/{groupId}/{postId}")
+    @GetMapping("/post/{postId}")
     public Object postIdSearch() {
     	return null;
     }
 
     //그룹 포스팅 수정
-    @PutMapping("/{groupId}/{postId}/update")
+    @PutMapping("/update/{postId}")
     public Object postIdUpdate() {
     	return null;
     }
     //그룹 포스팅 삭제
-    @DeleteMapping("/{groupId}/{postId}/delete")
+    @DeleteMapping("/delete/{postId}")
     public Object postIdDelete() {
     	return null;
     }
