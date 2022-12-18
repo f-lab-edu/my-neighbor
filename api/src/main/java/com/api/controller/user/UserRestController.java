@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/user")
-public class UserController {
+@RequestMapping("api")
+public class UserRestController {
 
     // 내 정보 조회
-    @GetMapping("me")
+    @GetMapping("user/me")
     public Object me() {
         return null;
     }
 
     // 회원 가입
-    @PostMapping("join")
+    @PostMapping("user/join")
     public Object join() {
         return null;
     }
