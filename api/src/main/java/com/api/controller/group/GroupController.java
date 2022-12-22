@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/group")
-public class GroupRestController {
+public class GroupController {
 
     // 그룹 조회
     @GetMapping
