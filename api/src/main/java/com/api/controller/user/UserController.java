@@ -11,8 +11,8 @@ public class UserController {
     public Object me() {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"user\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"userId\": 125, \n" +
                 "           \"email\": \"user125@gmail.com\", \n" +
                 "           \"name\": \"kim user\", \n" +
@@ -20,9 +20,10 @@ public class UserController {
                 "           \"townId\": 5, \n" +
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"lastLoginAt\": \"2022-03-20\", \n" +
-                "           \"createAt\": \"2021-02-15\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2021-02-15\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
@@ -32,8 +33,8 @@ public class UserController {
     public Object getOneUser(@PathVariable Long userId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"user\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"userId\": " + userId + ", \n" +
                 "           \"email\": \"test_user@gmail.com\", \n" +
                 "           \"name\": \"lee user\", \n" +
@@ -41,9 +42,10 @@ public class UserController {
                 "           \"townId\": 11, \n" +
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"lastLoginAt\": \"2022-12-20\", \n" +
-                "           \"createAt\": \"2020-05-26\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2020-05-26\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
@@ -53,8 +55,8 @@ public class UserController {
     public Object join() {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"user\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"userId\": 522, \n" +
                 "           \"email\": \"park@gmail.com\", \n" +
                 "           \"name\": \"park user\", \n" +
@@ -62,9 +64,10 @@ public class UserController {
                 "           \"townId\": 2, \n" +
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"lastLoginAt\": \"2022-03-20\", \n" +
-                "           \"createAt\": \"2021-02-15\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2021-02-15\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
