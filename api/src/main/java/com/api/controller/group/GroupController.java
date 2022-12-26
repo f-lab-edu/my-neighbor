@@ -1,6 +1,13 @@
 package com.api.controller.group;
 
-import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/group")
@@ -46,7 +53,7 @@ public class GroupController {
 
     // 특정 그룹 조회
     @GetMapping("/{groupId}")
-    public Object getOneGroup(@PathVariable Long groupId) {
+    public Object getGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
                 "   \"response\": [\n" +
@@ -70,7 +77,7 @@ public class GroupController {
     }
 
     // 그룹 생성
-    @PostMapping("/create")
+    @PostMapping()
     public Object createGroup(GroupDto groupDto) {
         return "{\n" +
                 "   \"success\" : true, \n" +
@@ -95,7 +102,7 @@ public class GroupController {
     }
 
     // 그룹 수정
-    @PutMapping("/{groupId}/update")
+    @PutMapping("/{groupId}")
     public Object updateGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
@@ -120,7 +127,7 @@ public class GroupController {
     }
 
     // 그룹 삭제
-    @DeleteMapping("/{groupId}/delete")
+    @DeleteMapping("/{groupId}")
     public Object deleteGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +

@@ -1,6 +1,11 @@
 package com.api.controller.user;
 
-import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/user")
@@ -30,7 +35,7 @@ public class UserController {
 
     // 특정 사용자 조회
     @GetMapping("{userId}")
-    public Object getOneUser(@PathVariable Long userId) {
+    public Object getUser(@PathVariable Long userId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
                 "   \"response\": [\n" +
