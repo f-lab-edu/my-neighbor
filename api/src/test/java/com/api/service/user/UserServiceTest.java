@@ -56,6 +56,7 @@ class UserServiceTest {
         User result = userService.join(email, name, password);
 
         assertThat(result).isNotNull();
+        assertThat(result.getUserId()).isNotNull();
         assertThat(result.getName()).isEqualTo(name);
         assertThat(result.getEmail()).isEqualTo(email);
     }
@@ -70,6 +71,7 @@ class UserServiceTest {
         log.info("user: {}", result);
 
         assertThat(result).isNotNull();
+        assertThat(result.getUserId()).isEqualTo(userId);
         assertThat(result.getName()).isEqualTo(name);
         assertThat(result.getEmail()).isEqualTo(email);
     }
