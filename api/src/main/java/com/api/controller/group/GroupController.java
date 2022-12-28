@@ -1,6 +1,12 @@
 package com.api.controller.group;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/group")
@@ -11,8 +17,7 @@ public class GroupController {
     public Object getGroups() {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"groupList\":[\n" +
+                "   \"response\": [\n" +
                 "           {\n" +
                 "               \"groupId\": 2401, \n" +
                 "               \"categoryId\": 103, \n" +
@@ -24,7 +29,7 @@ public class GroupController {
                 "               \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "               \"masterId\": 83212, \n" +
                 "               \"modifyAt\": \"2022-12-15\", \n" +
-                "               \"createAt\": \"2022-12-15\", \n" +
+                "               \"createAt\": \"2022-12-15\" \n" +
                 "           }, \n" +
                 "           {\n" +
                 "               \"groupId\": 5, \n" +
@@ -37,20 +42,21 @@ public class GroupController {
                 "               \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "               \"masterId\": 673, \n" +
                 "               \"modifyAt\": \"2022-05-10\", \n" +
-                "               \"createAt\": \"2002-12-12\", \n" +
-                "           }, \n" +
+                "               \"createAt\": \"2002-12-12\" \n" +
+                "           } \n" +
                 "       ], \n" +
+                "   \"length\" : 2, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
 
     // 특정 그룹 조회
     @GetMapping("/{groupId}")
-    public Object getOneGroup(@PathVariable Long groupId) {
+    public Object getGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"group\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"groupId\": " + groupId + ", \n" +
                 "           \"categoryId\": 103, \n" +
                 "           \"cityId\": 1, \n" +
@@ -61,20 +67,21 @@ public class GroupController {
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"masterId\": 0025345, \n" +
                 "           \"modifyAt\": \"2022-03-20\", \n" +
-                "           \"createAt\": \"2021-02-15\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2021-02-15\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
 
     // 그룹 생성
-    @PostMapping("/create")
+    @PostMapping()
     public Object createGroup(GroupDto groupDto) {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"group\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"groupId\": 0002401, \n" +
                 "           \"categoryId\": 103, \n" +
                 "           \"cityId\": 1, \n" +
@@ -85,20 +92,21 @@ public class GroupController {
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"masterId\": 0083212, \n" +
                 "           \"modifyAt\": \"2022-12-22\", \n" +
-                "           \"createAt\": \"2022-12-22\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2022-12-22\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
 
     // 그룹 수정
-    @PutMapping("/{groupId}/update")
+    @PutMapping("/{groupId}")
     public Object updateGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": {\n" +
-                "       \"group\" : {\n" +
+                "   \"response\": [\n" +
+                "       {\n" +
                 "           \"groupId\": 0002401, \n" +
                 "           \"categoryId\": 103, \n" +
                 "           \"cityId\": 1, \n" +
@@ -109,19 +117,35 @@ public class GroupController {
                 "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                 "           \"masterId\": 0083212, \n" +
                 "           \"modifyAt\": \"2022-12-22\", \n" +
-                "           \"createAt\": \"2022-12-15\", \n" +
-                "           }, \n" +
-                "       }, \n" +
+                "           \"createAt\": \"2022-12-15\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
 
     // 그룹 삭제
-    @DeleteMapping("/{groupId}/delete")
+    @DeleteMapping("/{groupId}")
     public Object deleteGroup(@PathVariable Long groupId) {
         return "{\n" +
                 "   \"success\" : true, \n" +
-                "   \"response\": \"" + groupId + " has been deleted.\", \n" +
+                "   \"response\": [\n" +
+                "       {\n" +
+                "           \"groupId\": 0002401, \n" +
+                "           \"categoryId\": 103, \n" +
+                "           \"cityId\": 1, \n" +
+                "           \"townId\": 8, \n" +
+                "           \"maxNum\": 10, \n" +
+                "           \"name\": \"서울특별시 서대문구 등산 모임\", \n" +
+                "           \"desc\": \"등산러 모이세요\", \n" +
+                "           \"profileImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
+                "           \"masterId\": 0083212, \n" +
+                "           \"modifyAt\": \"2022-12-22\", \n" +
+                "           \"createAt\": \"2022-12-15\" \n" +
+                "       } \n" +
+                "   ], \n" +
+                "   \"length\" : 1, \n" +
                 "   \"error\" : null \n" +
                 "}";
     }
