@@ -1,18 +1,19 @@
 package com.api.model.user;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 // todo lombok..?
 public class User {
 
-    private final Long userId;
+    private Long userId;
 
-    private final String email;
+    private String email;
 
-    private final String name;
+    private String name;
 
-    private final String password;
+    private String password;
 
     private Long cityId;
 
@@ -74,7 +75,22 @@ public class User {
         return createAt;
     }
 
-    // todo hashcode, equals, builder
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return Objects.equals(userId, user.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return userId != null ? userId.hashCode() : 0;
+    }
+
+    // todo builder
 
     @Override
     public String toString() {
