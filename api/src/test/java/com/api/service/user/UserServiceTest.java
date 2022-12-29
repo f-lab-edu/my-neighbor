@@ -2,15 +2,14 @@ package com.api.service.user;
 
 import com.api.model.user.User;
 import com.api.repository.user.UserRepository;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static java.time.LocalDateTime.now;
@@ -19,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserServiceTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -38,8 +35,10 @@ class UserServiceTest {
 
     private User user;
 
-    @BeforeAll
+    @BeforeEach
     void setUp() {
+        MockitoAnnotations.openMocks(this);
+
         userId = 1L;
         name = "yuna";
         email = "yuna@gmail.com";
@@ -66,7 +65,7 @@ class UserServiceTest {
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
 
         UserService userService = new UserService(userRepository);
-        User result = userService.findById(userId).orElse(null);
+        User result = userService.findById(userId).orElseThrow(NoSuchElementException::new);
 
         log.info("user: {}", result);
 
@@ -78,10 +77,9 @@ class UserServiceTest {
 
     @Test
     void 사용자를_아이디로_조회할수없다() {
-
         Long undefinedId = 20L;
         String message = "not found";
-        when(userRepository.findById(undefinedId)).thenThrow(new RuntimeException(message));
+        when(userRepository.findById(undefinedId)).thenThrow(new NoSuchElementException(message));
 
         UserService userService = new UserService(userRepository);
         RuntimeException e = assertThrows(RuntimeException.class, () -> userService.findById(undefinedId));
