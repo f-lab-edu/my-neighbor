@@ -1,4 +1,4 @@
-package com.api.controller.group;
+package com.api.controller.GroupController;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
