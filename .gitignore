@@ -33,9 +33,9 @@ build/
 .vscode/
 ======
 >>>>>>> upstream/main
-.DS_Store
+*.DS_Store
 
 ### Eclipse ###
-.project
-.settings
-.classpath
+*.project
+*.settings
+*.classpath
