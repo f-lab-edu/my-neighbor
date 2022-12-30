@@ -166,7 +166,6 @@ public class GroupController {
                  "           \"contents\": \"12월 4째주 요일입니다. \", \n" +
                  "           \"ImageUrl\": \"https://s3.console.aws.amazon.com/......jpeg\", \n" +
                  "           \"masterId\": 0083212, \n" +
-                 "           \"modifyAt\": \"2022-12-26\", \n" +
                  "           \"writeAt\": \"2022-12-26\" \n" +
                  "       } \n" +
                  "   ], \n" +
