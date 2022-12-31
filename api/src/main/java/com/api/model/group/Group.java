@@ -6,10 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.StringJoiner;
+import lombok.getter;
 
 public class Group {
-
-
     private Long groupId;
 
     private int categoryId;
