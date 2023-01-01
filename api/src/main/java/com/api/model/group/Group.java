@@ -54,21 +54,6 @@ public class Group {
         this.createAt = createAt;
     }
 
-    public Group(Long groupId, int categoryId, int cityId, int townId, int maxNum, String title, String contents, String profileImageUrl, String masterId, LocalDateTime writeAt){
-        // todo validation
-
-        this.groupId = groupId;
-        this.categoryId = categoryId;
-        this.cityId = cityId;
-        this.townId = townId;
-        this.maxNum = maxNum;
-        this.title = title;
-        this.contents = contents;
-        this.profileImageUrl = profileImageUrl;
-        this.masterId = masterId;
-        this.writeAt = writeAt;
-    }
-
     public Long getGroupId() { return groupId; }
 
     public int getCategoryId() { return categoryId; }
