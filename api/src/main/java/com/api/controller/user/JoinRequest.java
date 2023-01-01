@@ -8,15 +8,15 @@ public class JoinRequest {
 
     public String name;
 
-    private String credential;
+    private String credentials;
 
     private JoinRequest() {
     }
 
-    public JoinRequest(String principal, String name, String credential) {
+    public JoinRequest(String principal, String name, String credentials) {
         this.principal = principal;
         this.name = name;
-        this.credential = credential;
+        this.credentials = credentials;
     }
 
     public String getPrincipal() {
@@ -27,8 +27,8 @@ public class JoinRequest {
         return name;
     }
 
-    public String getCredential() {
-        return credential;
+    public String getCredentials() {
+        return credentials;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class JoinRequest {
         return new StringJoiner(", ", JoinRequest.class.getSimpleName() + "[", "]")
                 .add("principal='" + principal + "'")
                 .add("name='" + name + "'")
-                .add("credential='" + credential + "'")
+                .add("credentials='" + credentials + "'")
                 .toString();
     }
 }

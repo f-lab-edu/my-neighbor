@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.NoSuchElementException;
-
 import static com.api.controller.ApiResult.OK;
 
 @RestController
@@ -59,7 +57,7 @@ public class UserController {
     @PostMapping("join")
     public ApiResult<UserDto> join(@RequestBody JoinRequest request) {
         return OK(
-            new UserDto(userService.join(request.getPrincipal(), request.getName(), request.getCredential()))
+            new UserDto(userService.join(request.getPrincipal(), request.getName(), request.getCredentials()))
         );
     }
 }
