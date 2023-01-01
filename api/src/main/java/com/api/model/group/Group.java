@@ -1,5 +1,6 @@
 package com.api.model.group;
 
+import com.api.model.user.User;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -53,7 +54,7 @@ public class Group {
         this.createAt = createAt;
     }
 
-    public  Contents(Long groupId, int categoryId, int cityId, int townId, int maxNum, String title, String contents, String profileImageUrl, String masterId, LocalDateTime writeAt){
+    public Group(Long groupId, int categoryId, int cityId, int townId, int maxNum, String title, String contents, String profileImageUrl, String masterId, LocalDateTime writeAt){
         // todo validation
 
         this.groupId = groupId;
@@ -99,5 +100,11 @@ public class Group {
     public LocalDateTime getWriteAt() { return writeAt; }
 
    //@Override
+   @Override
+   public int hashCode() {
+       return groupId != null ? groupId.hashCode() : 0;
+   }
+
+    // todo builder
 
 }
