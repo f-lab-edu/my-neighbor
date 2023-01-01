@@ -65,7 +65,7 @@ class UserServiceTest {
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
 
         UserService userService = new UserService(userRepository);
-        User result = userService.findById(userId).orElseThrow(RuntimeException::new);
+        User result = userService.findById(userId).orElseThrow(NoSuchElementException::new);
 
         log.info("user: {}", result);
 
@@ -79,7 +79,7 @@ class UserServiceTest {
     void 사용자를_아이디로_조회할수없다() {
         Long undefinedId = 20L;
         String message = "not found";
-        when(userRepository.findById(undefinedId)).thenThrow(new RuntimeException(message));
+        when(userRepository.findById(undefinedId)).thenThrow(new NoSuchElementException(message));
 
         UserService userService = new UserService(userRepository);
         RuntimeException e = assertThrows(RuntimeException.class, () -> userService.findById(undefinedId));
