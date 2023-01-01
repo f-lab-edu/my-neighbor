@@ -10,7 +10,7 @@ public class JoinRequest {
 
     private String credential;
 
-    public JoinRequest() {
+    private JoinRequest() {
     }
 
     public JoinRequest(String principal, String name, String credential) {
@@ -23,24 +23,12 @@ public class JoinRequest {
         return principal;
     }
 
-    public void setPrincipal(String principal) {
-        this.principal = principal;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCredential() {
         return credential;
-    }
-
-    public void setCredential(String credential) {
-        this.credential = credential;
     }
 
     @Override
