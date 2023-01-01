@@ -12,7 +12,7 @@ public class ApiResult<T> {
 
     private ApiError error;
 
-    public ApiResult(boolean success, T response, ApiError error) {
+    private ApiResult(boolean success, T response, ApiError error) {
         this.success = success;
         this.response = response;
         this.error = error;
