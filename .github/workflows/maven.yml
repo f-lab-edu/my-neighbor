@@ -9,8 +9,6 @@
 name: Java CI with Maven
 
 on: # 워크플로우를 실행시키는 조건
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ] # main 브랜치에 pr 될 때마다
 
