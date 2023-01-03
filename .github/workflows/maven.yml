@@ -37,7 +37,7 @@ jobs: # job: 처리 단위
       id: current-time
       with:
         format: YYYY-MM-DDTHH:mm:ss
-        utcOffset: "+08:00"
+        utcOffset: "+09:00"
     - name: Use current time
       env:
         F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
