@@ -36,14 +36,10 @@ jobs: # job: 처리 단위
       uses: josStorer/get-current-time@v2.0.2
       id: current-time
       with:
-        format: YYYYMMDD-HH
+        format: YYYY-MM-DDTHH:mm:ss
         utcOffset: "+08:00"
     - name: Use current time
       env:
-        TIME: "${{ steps.current-time.outputs.time }}"
-        R_TIME: "${{ steps.current-time.outputs.readableTime }}"
         F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
-        YEAR: "${{ steps.current-time.outputs.year }}"
-        DAY: "${{ steps.current-time.outputs.day }}"
-      run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+      run: echo $F_TIME
       
