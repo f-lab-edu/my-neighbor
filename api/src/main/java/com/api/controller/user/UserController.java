@@ -2,6 +2,7 @@ package com.api.controller.user;
 
 import com.api.controller.ApiResult;
 import com.api.service.user.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +14,10 @@ import static com.api.controller.ApiResult.OK;
 
 @RestController
 @RequestMapping("api/user")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     // 내 정보 조회
     @GetMapping("me")
