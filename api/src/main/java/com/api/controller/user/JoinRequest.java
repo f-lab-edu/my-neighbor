@@ -1,10 +1,13 @@
 package com.api.controller.user;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JoinRequest {
 
     private String principal;
@@ -12,9 +15,6 @@ public class JoinRequest {
     public String name;
 
     private String credentials;
-
-    private JoinRequest() {
-    }
 
     @Override
     public String toString() {
