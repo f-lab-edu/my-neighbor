@@ -1,19 +1,6 @@
 server:
-  port: 80
+  port: 9090
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:test
-    driverClassName: org.h2.Driver
-    username: sa
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-  sql:
-    init:
-      mode: always
+  profiles:
+    active: dev
