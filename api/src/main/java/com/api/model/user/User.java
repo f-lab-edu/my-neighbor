@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 @Entity
 @Table(name = "users")
@@ -65,15 +64,16 @@ public class User {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("userId=" + userId)
-                .add("email='" + email + "'")
-                .add("name='" + name + "'")
-                .add("cityId=" + cityId)
-                .add("townId=" + townId)
-                .add("profileImageUrl='" + profileImageUrl + "'")
-                .add("lastLoginAt=" + lastLoginAt)
-                .add("createAt=" + createAt)
-                .toString();
+        return "User{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", cityId=" + cityId +
+                ", townId=" + townId +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", lastLoginAt=" + lastLoginAt +
+                ", createAt=" + createAt +
+                '}';
     }
 }
