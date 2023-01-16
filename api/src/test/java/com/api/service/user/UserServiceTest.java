@@ -9,7 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static java.time.LocalDateTime.now;
@@ -49,7 +48,7 @@ class UserServiceTest {
 
     @Test
     void 사용자를_생성한다() {
-        when(userRepository.insert(any(User.class))).thenReturn(user);
+        when(userRepository.save(any(User.class))).thenReturn(user);
 
         UserService userService = new UserService(userRepository);
         User result = userService.join(email, name, password);

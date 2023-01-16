@@ -14,7 +14,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User join(String email, String name, String password) {
-        return userRepository.insert(new User(email, name, password));
+        return userRepository.save(new User(email, name, password));
     }
 
     public Optional<User> findById(Long userId) {
