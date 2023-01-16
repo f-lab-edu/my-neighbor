@@ -1,7 +1,13 @@
 package com.api.controller.user;
 
-import java.util.StringJoiner;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JoinRequest {
 
     private String principal;
@@ -10,33 +16,12 @@ public class JoinRequest {
 
     private String credentials;
 
-    private JoinRequest() {
-    }
-
-    public JoinRequest(String principal, String name, String credentials) {
-        this.principal = principal;
-        this.name = name;
-        this.credentials = credentials;
-    }
-
-    public String getPrincipal() {
-        return principal;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCredentials() {
-        return credentials;
-    }
-
     @Override
     public String toString() {
-        return new StringJoiner(", ", JoinRequest.class.getSimpleName() + "[", "]")
-                .add("principal='" + principal + "'")
-                .add("name='" + name + "'")
-                .add("credentials='" + credentials + "'")
-                .toString();
+        return "JoinRequest{" +
+                "principal='" + principal + '\'' +
+                ", name='" + name + '\'' +
+                ", credentials='" + credentials + '\'' +
+                '}';
     }
 }
