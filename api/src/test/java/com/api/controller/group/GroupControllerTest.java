@@ -48,7 +48,7 @@ class GroupControllerTest {
     public void test_getGroups_isSuccess() {
         when(groupService.findByCategoryId(anyInt())).thenReturn(groups);
 
-        ApiResult<List<GroupDto>> groupListResult = groupController.getGroups(categoryId);
+        ApiResult<List<GroupDto>> groupListResult = groupController.getGroups();
 
         assertThat(groupListResult).isNotNull();
     }

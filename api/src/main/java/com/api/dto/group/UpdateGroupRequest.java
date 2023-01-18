@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class GroupUpdateRequest {
+public class UpdateGroupRequest {
 
     private Integer categoryId;
 
@@ -26,6 +26,7 @@ public class GroupUpdateRequest {
 
     private int townId;
 
+    // todo mapper 로 변경
     public Group newGroup(Integer categoryId, Long leaderId, String name, String desc, String groupImageUrl, String publicType, int maxNum, int cityId, int townId) {
         return new Group(categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId);
     }
