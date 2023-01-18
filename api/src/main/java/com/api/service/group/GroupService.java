@@ -14,6 +14,12 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
 
+    public Group saveGroup(Group group) {
+        group.updateCreateAt();
+        update(group);
+        return group;
+    }
+
     public List<Group> findByCategoryId(Integer categoryId) {
         return groupRepository.findByCategoryId(categoryId);
     }
@@ -22,7 +28,13 @@ public class GroupService {
         return groupRepository.findById(userId);
     }
 
-    public Group saveGroup(Integer categoryId, Long leaderId, String name, String desc, String publicType) {
-        return groupRepository.saveGroup(categoryId, leaderId, name, desc, publicType);
+    public Group updateGroup(Group group) {
+        group.updateModifyAt();
+        update(group);
+        return group;
+    }
+
+    public void update(Group group) {
+        groupRepository.save(group);
     }
 }

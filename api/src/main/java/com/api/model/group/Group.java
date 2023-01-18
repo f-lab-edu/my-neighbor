@@ -5,8 +5,6 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-import static java.time.LocalDateTime.now;
-
 @Getter
 @AllArgsConstructor
 public class Group {
@@ -40,7 +38,15 @@ public class Group {
     }
 
     public Group(Integer categoryId, Long leaderId, String name, String desc, String groupImageUrl, String publicType, int maxNum, int cityId, int townId) {
-        this(null, categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId, null, now());
+        this(null, categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId, null, null);
+    }
+
+    public void updateModifyAt() {
+        this.modifyAt = LocalDateTime.now();
+    }
+
+    public void updateCreateAt() {
+        this.createAt = LocalDateTime.now();
     }
 
     @Override

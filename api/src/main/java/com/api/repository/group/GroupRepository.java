@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface GroupRepository {
 
+    Group save(Group group);
+
     List<Group> findByCategoryId(Integer categoryId);
 
     Optional<Group> findById(Long userId);
-
-    Group saveGroup(Integer categoryId, Long leaderId, String name, String desc, String publicType);
 }
