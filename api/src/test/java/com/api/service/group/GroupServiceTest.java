@@ -57,10 +57,18 @@ class GroupServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result.getGroupId()).isNotNull();
+        assertThat(result.getCreateAt()).isNotNull();
     }
 
     @Test
     void 그룹을_수정한다() {
+        when(groupRepository.save(any(Group.class))).thenReturn(resultGroup);
 
+        GroupService groupService = new GroupService(groupRepository);
+        Group result = groupService.updateGroup(resultGroup);
+
+        assertThat(result).isNotNull();
+        assertThat(result.getGroupId()).isNotNull();
+        assertThat(result.getModifyAt()).isNotNull();
     }
 }
