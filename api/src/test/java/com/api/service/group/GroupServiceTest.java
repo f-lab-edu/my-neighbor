@@ -9,6 +9,8 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -30,6 +32,10 @@ class GroupServiceTest {
 
     private String publicType;
 
+    private LocalDateTime modifyAt;
+
+    private LocalDateTime createAt;
+
     private Group group;
 
     private Group resultGroup;
@@ -43,6 +49,8 @@ class GroupServiceTest {
         name = "service test group";
         leaderId = 1L;
         publicType = "PRIVATE_GROUP";
+        modifyAt = LocalDateTime.now().minusDays(2);
+        createAt = LocalDateTime.now().minusDays(30);
 
         group = new Group(categoryId, leaderId, name, null, publicType);
         resultGroup = new Group(groupId, categoryId, leaderId, name, null, null, publicType, 10, 0, 0, null, null);
@@ -57,7 +65,7 @@ class GroupServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result.getGroupId()).isNotNull();
-        assertThat(result.getCreateAt()).isNotNull();
+        assertThat(result.getCreateAt()).isNotEqualTo(createAt);
     }
 
     @Test
@@ -69,6 +77,6 @@ class GroupServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result.getGroupId()).isNotNull();
-        assertThat(result.getModifyAt()).isNotNull();
+        assertThat(result.getModifyAt()).isNotEqualTo(modifyAt);
     }
 }
