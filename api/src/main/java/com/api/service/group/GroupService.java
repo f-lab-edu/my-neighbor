@@ -16,8 +16,7 @@ public class GroupService {
 
     public Group save(Group group) {
         group.updateCreateAt();
-        update(group);
-        return group;
+        return update(group);
     }
 
     public List<Group> findAll() {
@@ -34,15 +33,14 @@ public class GroupService {
 
     public Group updateGroup(Group group) {
         group.updateModifyAt();
-        update(group);
-        return group;
+        return update(group);
     }
 
     public void deleteById(Long groupId) {
         groupRepository.deleteById(groupId);
     }
 
-    public void update(Group group) {
-        groupRepository.save(group);
+    public Group update(Group group) {
+        return groupRepository.save(group);
     }
 }
