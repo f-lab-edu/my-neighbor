@@ -1,6 +1,7 @@
 package com.api.controller.group;
 
 import com.api.dto.group.GroupDto;
+import com.api.dto.group.UpdateGroupRequest;
 import com.api.model.group.Group;
 
 import java.time.LocalDateTime;
@@ -39,5 +40,19 @@ public class GroupMapper<T> {
         LocalDateTime createAt = groupDto.getCreateAt();
 
         return new Group(groupId, categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId, modifyAt, createAt);
+    }
+
+    public static Group toEntity(UpdateGroupRequest request) {
+        Integer categoryId = request.getCategoryId();
+        Long leaderId = request.getLeaderId();
+        String name = request.getName();
+        String desc = request.getDesc();
+        String groupImageUrl = request.getGroupImageUrl();
+        String publicType = request.getPublicType();
+        int maxNum = request.getMaxNum();
+        int cityId = request.getCityId();
+        int townId = request.getTownId();
+
+        return new Group(categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId);
     }
 }

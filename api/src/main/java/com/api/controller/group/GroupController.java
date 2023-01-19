@@ -55,14 +55,7 @@ public class GroupController {
     public ApiResult<GroupDto> createGroup(@RequestBody UpdateGroupRequest request) {
         return OK(
             toDto(
-                groupService.save(
-                    request.newGroup(
-                        request.getCategoryId(), request.getLeaderId(),
-                        request.getName(), request.getDesc(),
-                        request.getGroupImageUrl(), request.getPublicType(), request.getMaxNum(),
-                        request.getCityId(), request.getTownId()
-                    )
-                )
+                groupService.save(toEntity(request))
             )
         );
     }
