@@ -6,7 +6,7 @@ import com.api.model.group.Group;
 
 import java.time.LocalDateTime;
 
-public class GroupMapper<T> {
+public class GroupMapper {
 
     public static GroupDto toDto(Group group) {
         Long groupId = group.getGroupId();
