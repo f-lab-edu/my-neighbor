@@ -2,6 +2,7 @@ package com.api.model.group;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Builder
 public class Group {
 
     @Id
@@ -57,12 +60,12 @@ public class Group {
         this(null, categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId, null, null);
     }
 
-    public void updateModifyAt() {
-        this.modifyAt = LocalDateTime.now();
+    public void updateModifyAt(Clock clock) {
+        this.modifyAt = LocalDateTime.now(clock);
     }
 
-    public void updateCreateAt() {
-        this.createAt = LocalDateTime.now();
+    public void updateCreateAt(Clock clock) {
+        this.createAt = LocalDateTime.now(clock);
     }
 
     @Override

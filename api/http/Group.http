@@ -1,0 +1,32 @@
+### create group
+POST http://localhost/api/group
+Content-Type: application/json
+
+{
+  "categoryId": 11,
+  "leaderId": 2,
+  "name": "new group",
+  "desc": null,
+  "groupImageUrl": null,
+  "publicType": "PRIVATE_GROUP",
+  "maxNum": 100,
+  "cityId": 5,
+  "townId": 3
+}
+
+### update group
+PATCH localhost/api/group
+Content-Type: application/json
+
+{
+  "groupId": 1,
+  "categoryId": 11,
+  "leaderId": 2,
+  "name": "new group - update",
+  "desc": null,
+  "groupImageUrl": null,
+  "publicType": "PUBLIC_GROUP",
+  "maxNum": 100,
+  "cityId": 5,
+  "townId": 3
+}

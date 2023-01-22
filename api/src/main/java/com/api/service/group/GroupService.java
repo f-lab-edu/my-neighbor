@@ -5,6 +5,7 @@ import com.api.repository.group.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,10 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
 
+    private final Clock clock;
+
     public Group save(Group group) {
-        group.updateCreateAt();
+        group.updateCreateAt(clock);
         return update(group);
     }
 
@@ -32,7 +35,7 @@ public class GroupService {
     }
 
     public Group updateGroup(Group group) {
-        group.updateModifyAt();
+        group.updateModifyAt(clock);
         return update(group);
     }
 
