@@ -1,8 +1,8 @@
 package com.api.controller.user;
 
 import com.api.controller.ApiResult;
-import com.api.dto.user.JoinRequest;
-import com.api.dto.user.UserDto;
+import com.api.dto.JoinRequest;
+import com.api.dto.UserDto;
 import com.api.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

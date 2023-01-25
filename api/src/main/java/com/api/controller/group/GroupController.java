@@ -1,9 +1,9 @@
 package com.api.controller.group;
 
 import com.api.controller.ApiResult;
-import com.api.dto.group.GroupDto;
-import com.api.dto.group.SimpleGroupDto;
-import com.api.dto.group.UpdateGroupRequest;
+import com.api.dto.GroupDto;
+import com.api.dto.SimpleGroupDto;
+import com.api.dto.CreateGroupRequest;
 import com.api.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,8 +51,8 @@ public class GroupController {
     }
 
     // 그룹 생성
-    @PostMapping()
-    public ApiResult<GroupDto> createGroup(@RequestBody UpdateGroupRequest request) {
+    @PostMapping
+    public ApiResult<GroupDto> createGroup(@RequestBody CreateGroupRequest request) {
         return OK(
             toDto(
                 groupService.save(toEntity(request))

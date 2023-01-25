@@ -1,12 +1,12 @@
-package com.api.dto.group;
+package com.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
 @AllArgsConstructor
+@Getter
 public class GroupDto {
 
     private Long groupId;

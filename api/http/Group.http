@@ -1,4 +1,4 @@
-### create group
+### Create group
 POST http://localhost/api/group
 Content-Type: application/json
 
@@ -14,8 +14,8 @@ Content-Type: application/json
   "townId": 3
 }
 
-### update group
-PATCH localhost/api/group
+### Update group
+PATCH http://localhost/api/group
 Content-Type: application/json
 
 {
@@ -30,3 +30,45 @@ Content-Type: application/json
   "cityId": 5,
   "townId": 3
 }
+
+
+
+
+### Get all posts in a specific group
+GET http://localhost/api/post/1
+Accept: application/json
+
+### Create post
+POST http://localhost/api/post
+Content-Type: application/json
+
+{
+  "groupId": 2,
+  "writer": {
+    "userId": 1,
+    "email": "test00@gmail.com",
+    "name": "tester00"
+  },
+  "contents": "new post content",
+  "publicType": "PRIVATE_POST"
+}
+
+### Update post
+PATCH http://localhost/api/post
+Content-Type: application/json
+
+{
+  "postId": 1,
+  "groupId": 1,
+  "writer": {
+    "userId": 2,
+    "email": "test01@gmail.com",
+    "name": "tester01"
+  },
+  "contents": "update content",
+  "count": 215,
+  "publicType": "PRIVATE_POST"
+}
+
+### Delete post
+DELETE http://localhost/api/post/1
