@@ -32,45 +32,45 @@ public class PostController {
 
     // 그룹 내 모든 포스트 조회
     @GetMapping("/{groupId}")
-    public ApiResult<List<PostDto>> getPosts(@PathVariable Long groupId) {
+    public ApiResult<List<PostDto>> postList(@PathVariable Long groupId) {
         return OK(
-                postService.findAllByGroupId(groupId)
-                        .stream()
-                        .map(GroupMapper::toDto)
-                        .collect(Collectors.toList())
+            postService.findAllByGroupId(groupId)
+                    .stream()
+                    .map(GroupMapper::toDto)
+                    .collect(Collectors.toList())
         );
     }
 
     // 포스트 작성
     @PostMapping
-    public ApiResult<PostDto> createPost(@RequestBody CreatePostRequest request) {
+    public ApiResult<PostDto> postSave(@RequestBody CreatePostRequest request) {
         return OK(
-                toDto(
-                        postService.save(toEntity(request))
-                )
+            toDto(
+                postService.save(toEntity(request))
+            )
         );
     }
 
     // 포스트 수정
     @PatchMapping
-    public ApiResult<PostDto> updatePost(@RequestBody PostDto postDto) {
+    public ApiResult<PostDto> postModify(@RequestBody PostDto postDto) {
         return OK(
-                toDto(
-                        postService.updatePost(toEntity(postDto))
-                )
+            toDto(
+                postService.updatePost(toEntity(postDto))
+            )
         );
     }
 
     // 포스트 삭제
     @DeleteMapping("/{postId}")
-    public ApiResult<PostDto> deletePost(@PathVariable Long postId) {
+    public ApiResult<PostDto> postRemove(@PathVariable Long postId) {
         try {
             return OK(
-                    toDto(postService.deletePost(postId))
+                toDto(postService.deletePost(postId))
             );
         } catch (Exception e) {
             return ERROR(
-                    HttpStatus.NOT_FOUND, e.getMessage()
+                HttpStatus.NOT_FOUND, e.getMessage()
             );
         }
     }
