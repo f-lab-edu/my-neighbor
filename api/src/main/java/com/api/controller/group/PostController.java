@@ -30,7 +30,7 @@ public class PostController {
 
     private final PostService postService;
 
-    // 그룹 내 모든 포스팅 조회
+    // 그룹 내 모든 포스트 조회
     @GetMapping("/{groupId}")
     public ApiResult<List<PostDto>> getPosts(@PathVariable Long groupId) {
         return OK(
@@ -41,7 +41,7 @@ public class PostController {
         );
     }
 
-    // 포스팅 작성
+    // 포스트 작성
     @PostMapping
     public ApiResult<PostDto> createPost(@RequestBody CreatePostRequest request) {
         return OK(
@@ -51,7 +51,7 @@ public class PostController {
         );
     }
 
-    // 포스팅 수정
+    // 포스트 수정
     @PatchMapping
     public ApiResult<PostDto> updatePost(@RequestBody PostDto postDto) {
         return OK(
@@ -61,7 +61,7 @@ public class PostController {
         );
     }
 
-    // 포스팅 삭제
+    // 포스트 삭제
     @DeleteMapping("/{postId}")
     public ApiResult<PostDto> deletePost(@PathVariable Long postId) {
         try {
