@@ -48,6 +48,14 @@ public class Post {
     @Column(updatable = false)
     private LocalDateTime createAt;
 
+    public void updateContents(String contents) {
+        this.contents = contents;
+    }
+
+    public void updatePublicType(String publicType) {
+        this.publicType = publicType;
+    }
+
     public void updateModifyAt(Clock clock) {
         this.modifyAt = LocalDateTime.now(clock);
     }

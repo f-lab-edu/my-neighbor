@@ -3,6 +3,7 @@ package com.api.controller.group;
 import com.api.controller.ApiResult;
 import com.api.dto.CreatePostRequest;
 import com.api.dto.PostDto;
+import com.api.dto.UpdatePostRequest;
 import com.api.service.group.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -53,10 +54,10 @@ public class PostController {
 
     // 포스트 수정
     @PatchMapping
-    public ApiResult<PostDto> postModify(@RequestBody PostDto postDto) {
+    public ApiResult<PostDto> postModify(@RequestBody UpdatePostRequest request) {
         return OK(
             toDto(
-                postService.updatePost(toEntity(postDto))
+                postService.updatePost(toEntity(request))
             )
         );
     }

@@ -4,6 +4,7 @@ import com.api.dto.CreateGroupRequest;
 import com.api.dto.CreatePostRequest;
 import com.api.dto.GroupDto;
 import com.api.dto.PostDto;
+import com.api.dto.UpdatePostRequest;
 import com.api.model.group.Group;
 import com.api.model.group.Post;
 
@@ -70,6 +71,15 @@ public class GroupMapper {
         return Post.builder()
                 .groupId(request.getGroupId())
                 .writer(request.getWriter())
+                .contents(request.getContents())
+                .publicType(request.getPublicType())
+                .build();
+    }
+
+    public static Post toEntity(UpdatePostRequest request) {
+        return Post.builder()
+                .postId(request.getPostId())
+                .groupId(request.getGroupId())
                 .contents(request.getContents())
                 .publicType(request.getPublicType())
                 .build();

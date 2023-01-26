@@ -35,14 +35,22 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
+    public Optional<Post> findByPostIdAndGroupId(Long postId, Long groupId) {
+        return postRepository.findByPostIdAndGroupId(postId, groupId);
+    }
+
+    @Transactional(readOnly = true)
     public List<Post> findByWriterUserId(Long writerId) {
         return postRepository.findByWriterUserId(writerId);
     }
 
     @Transactional
     public Post updatePost(Post post) {
-        post.updateModifyAt(clock);
-        return update(post);
+        Post target = findByPostIdAndGroupId(post.getPostId(), post.getGroupId()).orElseThrow(() -> new RuntimeException("Post does not exist."));
+        target.updateContents(post.getContents());
+        target.updatePublicType(post.getPublicType());
+        target.updateModifyAt(clock);
+        return target;
     }
 
     @Transactional
