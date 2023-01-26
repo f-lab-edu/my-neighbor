@@ -1,6 +1,5 @@
 package com.api.model.group;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.Clock;
 import java.time.LocalDateTime;
 
@@ -26,20 +26,20 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long groupId;
 
-    @NotNull
+    @NotNull(message = "Category Id is mandatory")
     private Integer categoryId;
 
-    @NotNull
+    @NotNull(message = "Leader Id is mandatory")
     private Long leaderId;
 
-    @NotNull
+    @NotNull(message = "Name is mandatory")
     private String name;
 
     private String desc;
 
     private String groupImageUrl;
 
-    @NotNull
+    @NotNull(message = "Public Type is mandatory")
     private String publicType;
 
     private int maxNum;
@@ -51,14 +51,6 @@ public class Group {
     private LocalDateTime modifyAt;
 
     private LocalDateTime createAt;
-
-    public Group(Integer categoryId, Long leaderId, String name, String desc, String publicType) {
-        this(categoryId, leaderId, name, desc, null, publicType, 20, 0, 0);
-    }
-
-    public Group(Integer categoryId, Long leaderId, String name, String desc, String groupImageUrl, String publicType, int maxNum, int cityId, int townId) {
-        this(null, categoryId, leaderId, name, desc, groupImageUrl, publicType, maxNum, cityId, townId, null, null);
-    }
 
     public void updateModifyAt(Clock clock) {
         this.modifyAt = LocalDateTime.now(clock);

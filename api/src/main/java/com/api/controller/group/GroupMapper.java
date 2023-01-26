@@ -18,17 +18,32 @@ public class GroupMapper {
     }
 
     public static Group toEntity(GroupDto groupDto) {
-        return new Group(groupDto.getGroupId(), groupDto.getCategoryId(), groupDto.getLeaderId(),
-                groupDto.getName(), groupDto.getDesc(), groupDto.getGroupImageUrl(),
-                groupDto.getPublicType(), groupDto.getMaxNum(), groupDto.getCityId(),
-                groupDto.getTownId(), groupDto.getModifyAt(), groupDto.getCreateAt());
+        return Group.builder()
+                .groupId(groupDto.getGroupId())
+                .categoryId(groupDto.getCategoryId())
+                .leaderId(groupDto.getLeaderId())
+                .name(groupDto.getName())
+                .desc(groupDto.getDesc())
+                .groupImageUrl(groupDto.getGroupImageUrl())
+                .publicType(groupDto.getPublicType())
+                .maxNum(groupDto.getMaxNum())
+                .cityId(groupDto.getCityId())
+                .townId(groupDto.getTownId())
+                .build();
     }
 
     public static Group toEntity(CreateGroupRequest request) {
-        return new Group(request.getCategoryId(), request.getLeaderId(),
-                request.getName(), request.getDesc(), request.getGroupImageUrl(),
-                request.getPublicType(), request.getMaxNum(), request.getCityId(),
-                request.getTownId());
+        return Group.builder()
+                .categoryId(request.getCategoryId())
+                .leaderId(request.getLeaderId())
+                .name(request.getName())
+                .desc(request.getDesc())
+                .groupImageUrl(request.getGroupImageUrl())
+                .publicType(request.getPublicType())
+                .maxNum(request.getMaxNum())
+                .cityId(request.getCityId())
+                .townId(request.getTownId())
+                .build();
     }
 
     /** group posting mapping **/
