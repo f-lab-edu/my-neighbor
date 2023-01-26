@@ -13,6 +13,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,7 +51,7 @@ class PostServiceTest {
                 .build();
 
         post = Post.builder()
-                .postId(5L)
+                .postId(1L)
                 .groupId(1L)
                 .writer(new Writer(1L, "test writer", "test email"))
                 .contents("test content")
@@ -69,7 +70,7 @@ class PostServiceTest {
 
     @Test
     void 포스트를_수정한다() {
-        when(postRepository.save(any(Post.class))).thenReturn(post);
+        when(postRepository.findByPostIdAndGroupId(any(), any())).thenReturn(Optional.ofNullable(post));
 
         postService.updatePost(post);
 
