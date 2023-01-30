@@ -55,7 +55,9 @@ public class GroupService {
     }
 
     @Transactional
-    public void deleteById(Long groupId) {
-        groupRepository.deleteById(groupId);
+    public Group deleteGroup(Long groupId) {
+        Group target = findById(groupId).orElseThrow(() -> new RuntimeException("Group does not exist."));
+        groupRepository.delete(target);
+        return target;
     }
 }

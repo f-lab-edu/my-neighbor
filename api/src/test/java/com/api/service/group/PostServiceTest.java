@@ -75,6 +75,5 @@ class PostServiceTest {
         Post res = postService.updatePost(post);
 
         Assertions.assertThat(res.getModifyAt()).isEqualTo(LocalDateTime.now(clock));
-
     }
 }

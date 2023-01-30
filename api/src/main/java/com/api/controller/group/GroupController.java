@@ -1,12 +1,12 @@
 package com.api.controller.group;
 
 import com.api.controller.ApiResult;
-import com.api.dto.GroupDto;
-import com.api.dto.SimpleGroupDto;
 import com.api.dto.CreateGroupRequest;
+import com.api.dto.GroupDto;
 import com.api.dto.UpdateGroupRequest;
 import com.api.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.api.controller.ApiResult.ERROR;
 import static com.api.controller.ApiResult.OK;
 import static com.api.controller.group.GroupMapper.toDto;
 import static com.api.controller.group.GroupMapper.toEntity;
@@ -73,8 +74,15 @@ public class GroupController {
 
     // 그룹 삭제
     @DeleteMapping("/{groupId}")
-    public ApiResult<SimpleGroupDto> deleteGroup(@PathVariable Long groupId) {
-        groupService.deleteById(groupId);
-        return OK(new SimpleGroupDto(groupId));
+    public ApiResult<GroupDto> deleteGroup(@PathVariable Long groupId) {
+        try {
+            return OK(
+                    toDto(groupService.deleteGroup(groupId))
+            );
+        } catch (Exception e) {
+            return ERROR(
+                    HttpStatus.NOT_FOUND, e.getMessage()
+            );
+        }
     }
 }

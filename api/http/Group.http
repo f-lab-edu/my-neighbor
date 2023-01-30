@@ -31,6 +31,8 @@ Content-Type: application/json
   "townId": 3
 }
 
+### Delete group
+DELETE http://localhost/api/group/1333
 
 
 
@@ -65,4 +67,4 @@ Content-Type: application/json
 }
 
 ### Delete post
-DELETE http://localhost/api/post/1
+DELETE http://localhost/api/post/133

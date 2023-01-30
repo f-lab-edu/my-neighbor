@@ -56,11 +56,7 @@ public class PostService {
     @Transactional
     public Post deletePost(Long postId) {
         Post target = findById(postId).orElseThrow(() -> new RuntimeException("Post does not exist."));
-        delete(target);
+        postRepository.delete(target);
         return target;
-    }
-
-    private void delete(Post post) {
-        postRepository.delete(post);
     }
 }
