@@ -4,6 +4,7 @@ import com.api.dto.CreateGroupRequest;
 import com.api.dto.CreatePostRequest;
 import com.api.dto.GroupDto;
 import com.api.dto.PostDto;
+import com.api.dto.UpdateGroupRequest;
 import com.api.dto.UpdatePostRequest;
 import com.api.model.group.Group;
 import com.api.model.group.Post;
@@ -30,6 +31,8 @@ public class GroupMapper {
                 .maxNum(groupDto.getMaxNum())
                 .cityId(groupDto.getCityId())
                 .townId(groupDto.getTownId())
+                .modifyAt(groupDto.getModifyAt())
+                .createAt(groupDto.getCreateAt())
                 .build();
     }
 
@@ -46,6 +49,22 @@ public class GroupMapper {
                 .townId(request.getTownId())
                 .build();
     }
+
+    public static Group toEntity(UpdateGroupRequest request) {
+        return Group.builder()
+                .groupId(request.getGroupId())
+                .categoryId(request.getCategoryId())
+                .leaderId(request.getLeaderId())
+                .name(request.getName())
+                .desc(request.getDesc())
+                .groupImageUrl(request.getGroupImageUrl())
+                .publicType(request.getPublicType())
+                .maxNum(request.getMaxNum())
+                .cityId(request.getCityId())
+                .townId(request.getTownId())
+                .build();
+    }
+
 
     /** group posting mapping **/
     public static PostDto toDto(Post post) {

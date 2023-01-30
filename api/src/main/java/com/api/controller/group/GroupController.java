@@ -4,6 +4,7 @@ import com.api.controller.ApiResult;
 import com.api.dto.GroupDto;
 import com.api.dto.SimpleGroupDto;
 import com.api.dto.CreateGroupRequest;
+import com.api.dto.UpdateGroupRequest;
 import com.api.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,10 +63,10 @@ public class GroupController {
 
     // 그룹 수정
     @PatchMapping
-    public ApiResult<GroupDto> updateGroup(@RequestBody GroupDto groupDto) {
+    public ApiResult<GroupDto> updateGroup(@RequestBody UpdateGroupRequest request) {
         return OK(
             toDto(
-                groupService.updateGroup(toEntity(groupDto))
+                groupService.updateGroup(toEntity(request))
             )
         );
     }

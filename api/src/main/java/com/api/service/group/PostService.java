@@ -21,7 +21,7 @@ public class PostService {
     @Transactional
     public Post save(Post post) {
         post.updateCreateAt(clock);
-        return update(post);
+        return postRepository.save(post);
     }
 
     @Transactional(readOnly = true)
@@ -62,9 +62,5 @@ public class PostService {
 
     private void delete(Post post) {
         postRepository.delete(post);
-    }
-
-    private Post update(Post post) {
-        return postRepository.save(post);
     }
 }

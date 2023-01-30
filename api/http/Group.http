@@ -19,7 +19,7 @@ PATCH http://localhost/api/group
 Content-Type: application/json
 
 {
-  "groupId": null,
+  "groupId": 1,
   "categoryId": 11,
   "leaderId": 2,
   "name": "new group - update",

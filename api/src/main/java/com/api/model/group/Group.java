@@ -52,6 +52,38 @@ public class Group {
 
     private LocalDateTime createAt;
 
+    public void updateCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void updateLeaderId(Long leaderId) {
+        this.leaderId = leaderId;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void updateGroupImageUrl(String groupImageUrl) {
+        this.groupImageUrl = groupImageUrl;
+    }
+
+    public void updateMaxNum(int maxNum) {
+        this.maxNum = maxNum;
+    }
+
+    public void updateCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public void updateTownId(int townId) {
+        this.townId = townId;
+    }
+
     public void updateModifyAt(Clock clock) {
         this.modifyAt = LocalDateTime.now(clock);
     }
