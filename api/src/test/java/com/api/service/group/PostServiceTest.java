@@ -72,9 +72,9 @@ class PostServiceTest {
     void 포스트를_수정한다() {
         when(postRepository.findByPostIdAndGroupId(any(), any())).thenReturn(Optional.ofNullable(post));
 
-        postService.updatePost(post);
+        Post res = postService.updatePost(post);
 
-        Assertions.assertThat(post.getModifyAt()).isEqualTo(LocalDateTime.now(clock));
+        Assertions.assertThat(res.getModifyAt()).isEqualTo(LocalDateTime.now(clock));
 
     }
 }

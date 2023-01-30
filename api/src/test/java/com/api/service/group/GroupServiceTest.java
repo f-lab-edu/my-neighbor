@@ -13,6 +13,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -71,11 +72,11 @@ class GroupServiceTest {
 
     @Test
     void 그룹을_수정한다() {
-        when(groupRepository.save(any(Group.class))).thenReturn(resultGroup);
+        when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(resultGroup));
 
-        groupService.updateGroup(resultGroup);
+        Group res = groupService.updateGroup(resultGroup);
 
-        assertThat(resultGroup.getModifyAt()).isEqualTo(LocalDateTime.now(clock));
+        assertThat(res.getModifyAt()).isEqualTo(LocalDateTime.now(clock));
 
     }
 }
