@@ -1,6 +1,5 @@
 package com.api.dto;
 
-import com.api.model.group.Writer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,7 +13,11 @@ public class PostDto {
 
     private Long groupId;
 
-    private Writer writer;
+    private Long writerId;
+
+    private String writerEmail;
+
+    private String writerName;
 
     private String contents;
 
@@ -31,7 +34,9 @@ public class PostDto {
         return "PostDto{" +
                 "postId=" + postId +
                 ", groupId=" + groupId +
-                ", writer=" + writer +
+                ", writerId=" + writerId +
+                ", writerEmail='" + writerEmail + '\'' +
+                ", writerName='" + writerName + '\'' +
                 ", contents='" + contents + '\'' +
                 ", count=" + count +
                 ", publicType='" + publicType + '\'' +

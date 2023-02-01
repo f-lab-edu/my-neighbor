@@ -68,16 +68,19 @@ public class GroupMapper {
 
     /** group posting mapping **/
     public static PostDto toDto(Post post) {
-        return new PostDto(post.getPostId(), post.getGroupId(), post.getWriter(),
-                post.getContents(), post.getCount(), post.getPublicType(),
-                post.getModifyAt(), post.getCreateAt());
+        return new PostDto(post.getPostId(), post.getGroupId(), post.getWriterId(),
+                post.getWriterEmail(), post.getWriterName(), post.getContents(),
+                post.getCount(), post.getPublicType(), post.getModifyAt(),
+                post.getCreateAt());
     }
 
     public static Post toEntity(PostDto postDto) {
         return Post.builder()
                 .postId(postDto.getPostId())
                 .groupId(postDto.getGroupId())
-                .writer(postDto.getWriter())
+                .writerId(postDto.getWriterId())
+                .writerEmail(postDto.getWriterEmail())
+                .writerName(postDto.getWriterName())
                 .contents(postDto.getContents())
                 .count(postDto.getCount())
                 .publicType(postDto.getPublicType())
@@ -89,7 +92,9 @@ public class GroupMapper {
     public static Post toEntity(CreatePostRequest request) {
         return Post.builder()
                 .groupId(request.getGroupId())
-                .writer(request.getWriter())
+                .writerId(request.getWriterId())
+                .writerEmail(request.getWriterEmail())
+                .writerName(request.getWriterName())
                 .contents(request.getContents())
                 .publicType(request.getPublicType())
                 .build();

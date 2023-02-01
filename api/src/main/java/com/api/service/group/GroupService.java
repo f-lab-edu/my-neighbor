@@ -1,5 +1,6 @@
 package com.api.service.group;
 
+import com.api.error.NotFoundException;
 import com.api.model.group.Group;
 import com.api.repository.group.GroupRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,22 +40,22 @@ public class GroupService {
 
     @Transactional
     public Group updateGroup(Group group) {
-        Group target = findById(group.getGroupId()).orElseThrow(() -> new RuntimeException("Group does not exist."));;
-        target.updateCategoryId(group.getCategoryId());
-        target.updateLeaderId(group.getLeaderId());
-        target.updateName(group.getName());
-        target.updateDesc(group.getDesc());
-        target.updateGroupImageUrl(group.getGroupImageUrl());
-        target.updateMaxNum(group.getMaxNum());
-        target.updateCityId(group.getCityId());
-        target.updateTownId(group.getTownId());
+        Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(Group.class, group.getGroupId()));
+        target.setCategoryId(group.getCategoryId());
+        target.setLeaderId(group.getLeaderId());
+        target.setName(group.getName());
+        target.setDesc(group.getDesc());
+        target.setGroupImageUrl(group.getGroupImageUrl());
+        target.setMaxNum(group.getMaxNum());
+        target.setCityId(group.getCityId());
+        target.setTownId(group.getTownId());
         target.updateModifyAt(clock);
         return target;
     }
 
     @Transactional
     public Group deleteGroup(Long groupId) {
-        Group target = findById(groupId).orElseThrow(() -> new RuntimeException("Group does not exist."));
+        Group target = findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));
         groupRepository.delete(target);
         return target;
     }

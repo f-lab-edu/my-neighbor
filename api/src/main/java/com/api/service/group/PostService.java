@@ -1,5 +1,6 @@
 package com.api.service.group;
 
+import com.api.error.NotFoundException;
 import com.api.model.group.Post;
 import com.api.repository.group.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,22 +40,22 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public List<Post> findByWriterUserId(Long writerId) {
-        return postRepository.findByWriterUserId(writerId);
+    public List<Post> findByWriterId(Long writerId) {
+        return postRepository.findByWriterId(writerId);
     }
 
     @Transactional
     public Post updatePost(Post post) {
-        Post target = findByPostIdAndGroupId(post.getPostId(), post.getGroupId()).orElseThrow(() -> new RuntimeException("Post does not exist."));
-        target.updateContents(post.getContents());
-        target.updatePublicType(post.getPublicType());
+        Post target = findByPostIdAndGroupId(post.getPostId(), post.getGroupId()).orElseThrow(() -> new NotFoundException(Post.class, post.getPostId(), post.getGroupId()));
+        target.setContents(post.getContents());
+        target.setPublicType(post.getPublicType());
         target.updateModifyAt(clock);
         return target;
     }
 
     @Transactional
     public Post deletePost(Long postId) {
-        Post target = findById(postId).orElseThrow(() -> new RuntimeException("Post does not exist."));
+        Post target = findById(postId).orElseThrow(() -> new NotFoundException(Post.class, postId));
         postRepository.delete(target);
         return target;
     }

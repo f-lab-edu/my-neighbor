@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ### Delete group
-DELETE http://localhost/api/group/1333
+DELETE http://localhost/api/group/1
 
 
 
@@ -46,11 +46,9 @@ Content-Type: application/json
 
 {
   "groupId": 2,
-  "writer": {
-    "userId": 1,
-    "email": "test00@gmail.com",
-    "name": "tester00"
-  },
+  "writerId": 1,
+  "writerEmail": "test00@gmail.com",
+  "writerName": "tester00",
   "contents": "new post content",
   "publicType": "PRIVATE_POST"
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,62 +28,38 @@ public class Group {
     private Long groupId;
 
     @NotNull(message = "Category Id is mandatory")
+    @Setter
     private Integer categoryId;
 
     @NotNull(message = "Leader Id is mandatory")
+    @Setter
     private Long leaderId;
 
     @NotNull(message = "Name is mandatory")
+    @Setter
     private String name;
 
+    @Setter
     private String desc;
 
+    @Setter
     private String groupImageUrl;
 
     @NotNull(message = "Public Type is mandatory")
     private String publicType;
 
+    @Setter
     private int maxNum;
 
+    @Setter
     private int cityId;
 
+    @Setter
     private int townId;
 
     private LocalDateTime modifyAt;
 
     private LocalDateTime createAt;
-
-    public void updateCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public void updateLeaderId(Long leaderId) {
-        this.leaderId = leaderId;
-    }
-
-    public void updateName(String name) {
-        this.name = name;
-    }
-
-    public void updateDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public void updateGroupImageUrl(String groupImageUrl) {
-        this.groupImageUrl = groupImageUrl;
-    }
-
-    public void updateMaxNum(int maxNum) {
-        this.maxNum = maxNum;
-    }
-
-    public void updateCityId(int cityId) {
-        this.cityId = cityId;
-    }
-
-    public void updateTownId(int townId) {
-        this.townId = townId;
-    }
 
     public void updateModifyAt(Clock clock) {
         this.modifyAt = LocalDateTime.now(clock);

@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,15 +31,21 @@ public class Post {
     @NotNull
     private Long groupId;
 
-    @Embedded
-    private Writer writer;
+    @NotNull
+    private Long writerId;
+
+    private String writerEmail;
+
+    private String writerName;
 
     @NotNull
+    @Setter
     private String contents;
 
     private int count;
 
     @NotNull
+    @Setter
     private String publicType;
 
     @Column(insertable = false)
@@ -47,14 +53,6 @@ public class Post {
 
     @Column(updatable = false)
     private LocalDateTime createAt;
-
-    public void updateContents(String contents) {
-        this.contents = contents;
-    }
-
-    public void updatePublicType(String publicType) {
-        this.publicType = publicType;
-    }
 
     public void updateModifyAt(Clock clock) {
         this.modifyAt = LocalDateTime.now(clock);
@@ -69,8 +67,11 @@ public class Post {
         return "Post{" +
                 "postId=" + postId +
                 ", groupId=" + groupId +
-                ", writer=" + writer +
+                ", writerId=" + writerId +
+                ", writerEmail='" + writerEmail + '\'' +
+                ", writerName='" + writerName + '\'' +
                 ", contents='" + contents + '\'' +
+                ", count=" + count +
                 ", publicType='" + publicType + '\'' +
                 ", modifyAt=" + modifyAt +
                 ", createAt=" + createAt +

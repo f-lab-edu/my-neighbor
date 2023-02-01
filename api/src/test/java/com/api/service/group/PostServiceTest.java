@@ -1,7 +1,6 @@
 package com.api.service.group;
 
 import com.api.model.group.Post;
-import com.api.model.group.Writer;
 import com.api.repository.group.PostRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +44,9 @@ class PostServiceTest {
 
         noIdPost = Post.builder()
                 .groupId(1L)
-                .writer(new Writer(1L, "test writer", "test email"))
+                .writerId(1L)
+                .writerEmail("testeamil@gmail.com")
+                .writerName("test email")
                 .contents("test content")
                 .publicType("PRIVATE_POST")
                 .build();
@@ -53,7 +54,9 @@ class PostServiceTest {
         post = Post.builder()
                 .postId(1L)
                 .groupId(1L)
-                .writer(new Writer(1L, "test writer", "test email"))
+                .writerId(1L)
+                .writerEmail("testeamil@gmail.com")
+                .writerName("test email")
                 .contents("test content")
                 .publicType("PRIVATE_POST")
                 .build();
