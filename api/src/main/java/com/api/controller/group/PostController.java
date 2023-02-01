@@ -6,7 +6,6 @@ import com.api.dto.PostDto;
 import com.api.dto.UpdatePostRequest;
 import com.api.service.group.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.api.controller.ApiResult.ERROR;
 import static com.api.controller.ApiResult.OK;
 import static com.api.controller.group.GroupMapper.toDto;
 import static com.api.controller.group.GroupMapper.toEntity;
@@ -65,14 +63,8 @@ public class PostController {
     // 포스트 삭제
     @DeleteMapping("/{postId}")
     public ApiResult<PostDto> postRemove(@PathVariable Long postId) {
-        try {
-            return OK(
+        return OK(
                 toDto(postService.deletePost(postId))
-            );
-        } catch (Exception e) {
-            return ERROR(
-                HttpStatus.NOT_FOUND, e.getMessage()
-            );
-        }
+        );
     }
 }
