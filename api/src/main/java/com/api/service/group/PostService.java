@@ -29,7 +29,6 @@ public class PostService {
         return postRepository.findAllByGroupId(groupId);
     }
 
-    @Transactional(readOnly = true)
     public Optional<Post> findById(Long postId) {
         return postRepository.findById(postId);
     }

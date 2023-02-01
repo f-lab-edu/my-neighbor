@@ -24,7 +24,6 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
-    @Transactional(readOnly = true)
     public List<Group> findAll() {
         return groupRepository.findAll();
     }
@@ -34,7 +33,6 @@ public class GroupService {
         return groupRepository.findByCategoryId(categoryId);
     }
 
-    @Transactional(readOnly = true)
     public Optional<Group> findById(Long groupId) {
         return groupRepository.findById(groupId);
     }
