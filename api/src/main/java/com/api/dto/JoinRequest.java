@@ -1,4 +1,4 @@
-package com.api.dto.user;
+package com.api.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,13 +1,11 @@
-package com.api.dto.group;
+package com.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
-@Getter
 @AllArgsConstructor
-public class GroupDto {
+@Getter
+public class UpdateGroupRequest {
 
     private Long groupId;
 
@@ -29,25 +27,19 @@ public class GroupDto {
 
     private int townId;
 
-    private LocalDateTime modifyAt;
-
-    private LocalDateTime createAt;
-
     @Override
     public String toString() {
-        return "GroupDto{" +
+        return "UpdateGroupRequest{" +
                 "groupId=" + groupId +
                 ", categoryId=" + categoryId +
                 ", leaderId=" + leaderId +
                 ", name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
                 ", groupImageUrl='" + groupImageUrl + '\'' +
-                ", publicType=" + publicType +
+                ", publicType='" + publicType + '\'' +
                 ", maxNum=" + maxNum +
                 ", cityId=" + cityId +
                 ", townId=" + townId +
-                ", modifyAt=" + modifyAt +
-                ", createAt=" + createAt +
                 '}';
     }
 }

@@ -4,6 +4,7 @@ import com.api.model.group.Group;
 import com.api.repository.group.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.util.List;
@@ -17,15 +18,17 @@ public class GroupService {
 
     private final Clock clock;
 
+    @Transactional
     public Group save(Group group) {
         group.updateCreateAt(clock);
-        return update(group);
+        return groupRepository.save(group);
     }
 
     public List<Group> findAll() {
         return groupRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public List<Group> findByCategoryId(Integer categoryId) {
         return groupRepository.findByCategoryId(categoryId);
     }
@@ -34,16 +37,25 @@ public class GroupService {
         return groupRepository.findById(groupId);
     }
 
+    @Transactional
     public Group updateGroup(Group group) {
-        group.updateModifyAt(clock);
-        return update(group);
+        Group target = findById(group.getGroupId()).orElseThrow(RuntimeException::new);
+        target.setCategoryId(group.getCategoryId());
+        target.setLeaderId(group.getLeaderId());
+        target.setName(group.getName());
+        target.setDesc(group.getDesc());
+        target.setGroupImageUrl(group.getGroupImageUrl());
+        target.setMaxNum(group.getMaxNum());
+        target.setCityId(group.getCityId());
+        target.setTownId(group.getTownId());
+        target.updateModifyAt(clock);
+        return target;
     }
 
-    public void deleteById(Long groupId) {
-        groupRepository.deleteById(groupId);
-    }
-
-    public Group update(Group group) {
-        return groupRepository.save(group);
+    @Transactional
+    public Group deleteGroup(Long groupId) {
+        Group target = findById(groupId).orElseThrow(RuntimeException::new);
+        groupRepository.delete(target);
+        return target;
     }
 }

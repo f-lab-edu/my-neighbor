@@ -22,7 +22,7 @@ public class ApiResult<T> {
         return new ApiResult<>(true, response, null);
     }
 
-    public static ApiResult<?> ERROR(HttpStatus status, String errorMessage) {
+    public static <T> ApiResult<T> ERROR(HttpStatus status, String errorMessage) {
         return new ApiResult<>(false, null, new ApiError(status, errorMessage));
     }
 

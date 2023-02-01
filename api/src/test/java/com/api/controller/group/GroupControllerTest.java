@@ -1,8 +1,8 @@
 package com.api.controller.group;
 
 import com.api.controller.ApiResult;
-import com.api.dto.group.GroupDto;
-import com.api.dto.group.UpdateGroupRequest;
+import com.api.dto.GroupDto;
+import com.api.dto.CreateGroupRequest;
 import com.api.model.group.Group;
 import com.api.service.group.GroupService;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,7 +56,7 @@ class GroupControllerTest {
 
     @Test
     public void test_createGroup_isSuccess() {
-        UpdateGroupRequest request = new UpdateGroupRequest(10, 1L, "create-test-group", null, null, "PRIVATE_GROUP", 10, 1, 4);
+        CreateGroupRequest request = new CreateGroupRequest(10, 1L, "create-test-group", null, null, "PRIVATE_GROUP", 10, 1, 4);
         when(groupService.save(any(Group.class))).thenReturn(group1);
 
         ApiResult<GroupDto> result = groupController.createGroup(request);
