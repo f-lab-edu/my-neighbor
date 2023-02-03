@@ -15,8 +15,8 @@ public class GroupMapper {
     public static GroupDto toDto(Group group) {
         return new GroupDto(group.getGroupId(), group.getCategoryId(), group.getLeaderId(),
                 group.getName(), group.getDesc(), group.getGroupImageUrl(),
-                group.getPublicType(), group.getMaxNum(), group.getCityId(),
-                group.getTownId(), group.getModifyAt(), group.getCreateAt());
+                group.getPublicType(), group.getMaxNum(), group.getRegionId(),
+                group.getModifyAt(), group.getCreateAt());
     }
 
     public static Group toEntity(GroupDto groupDto) {
@@ -29,8 +29,7 @@ public class GroupMapper {
                 .groupImageUrl(groupDto.getGroupImageUrl())
                 .publicType(groupDto.getPublicType())
                 .maxNum(groupDto.getMaxNum())
-                .cityId(groupDto.getCityId())
-                .townId(groupDto.getTownId())
+                .regionId(groupDto.getRegionId())
                 .modifyAt(groupDto.getModifyAt())
                 .createAt(groupDto.getCreateAt())
                 .build();
@@ -45,8 +44,7 @@ public class GroupMapper {
                 .groupImageUrl(request.getGroupImageUrl())
                 .publicType(request.getPublicType())
                 .maxNum(request.getMaxNum())
-                .cityId(request.getCityId())
-                .townId(request.getTownId())
+                .regionId(request.getCityId())
                 .build();
     }
 
@@ -60,8 +58,7 @@ public class GroupMapper {
                 .groupImageUrl(request.getGroupImageUrl())
                 .publicType(request.getPublicType())
                 .maxNum(request.getMaxNum())
-                .cityId(request.getCityId())
-                .townId(request.getTownId())
+                .regionId(request.getCityId())
                 .build();
     }
 

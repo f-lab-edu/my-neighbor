@@ -47,8 +47,7 @@ public class GroupService {
         target.setDesc(group.getDesc());
         target.setGroupImageUrl(group.getGroupImageUrl());
         target.setMaxNum(group.getMaxNum());
-        target.setCityId(group.getCityId());
-        target.setTownId(group.getTownId());
+        target.setRegionId(group.getRegionId());
         target.updateModifyAt(clock);
         return target;
     }
