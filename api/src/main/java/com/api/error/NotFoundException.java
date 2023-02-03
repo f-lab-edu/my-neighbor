@@ -1,7 +1,7 @@
 package com.api.error;
 
-import com.api.util.MessageUtils;
 import lombok.Getter;
+import org.springframework.context.support.MessageSourceAccessor;
 
 import java.util.Arrays;
 
@@ -12,19 +12,22 @@ public class NotFoundException extends RuntimeException {
 
     private final String detailKey = "error.notfound.details";
 
+    private final MessageSourceAccessor messageSourceAccessor;
+
     private final Object[] params;
 
-    public NotFoundException(Class<?> cls, Object ... values) {
+    public NotFoundException(MessageSourceAccessor messageSourceAccessor, Class<?> cls, Object ... values) {
+        this.messageSourceAccessor = messageSourceAccessor;
         this.params = new String[]{cls.getSimpleName(), (values != null && values.length > 0) ? String.join(",", Arrays.toString(values)) : ""};
     }
 
     @Override
     public String getMessage() {
-        return MessageUtils.getMessage(detailKey, params);
+        return messageSourceAccessor.getMessage(detailKey, params);
     }
 
     @Override
     public String toString() {
-        return MessageUtils.getMessage(messageKey);
+        return messageSourceAccessor.getMessage(messageKey);
     }
 }

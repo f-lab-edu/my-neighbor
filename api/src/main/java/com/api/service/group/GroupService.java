@@ -4,6 +4,7 @@ import com.api.error.NotFoundException;
 import com.api.model.group.Group;
 import com.api.repository.group.GroupRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,8 @@ public class GroupService {
     private final GroupRepository groupRepository;
 
     private final Clock clock;
+
+    private final MessageSourceAccessor messageSourceAccessor;
 
     @Transactional
     public Group save(Group group) {
@@ -40,7 +43,7 @@ public class GroupService {
 
     @Transactional
     public Group updateGroup(Group group) {
-        Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(Group.class, group.getGroupId()));
+        Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(messageSourceAccessor, Group.class, group.getGroupId()));
         target.setCategoryId(group.getCategoryId());
         target.setLeaderId(group.getLeaderId());
         target.setName(group.getName());
@@ -55,7 +58,7 @@ public class GroupService {
 
     @Transactional
     public Group deleteGroup(Long groupId) {
-        Group target = findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));
+        Group target = findById(groupId).orElseThrow(() -> new NotFoundException(messageSourceAccessor, Group.class, groupId));
         groupRepository.delete(target);
         return target;
     }

@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.MessageSourceAccessor;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -31,6 +32,9 @@ class GroupServiceTest {
     @Mock
     private Clock clock;
 
+    @Mock
+    private MessageSourceAccessor messageSourceAccessor;
+
     private Group group;
 
     private Group resultGroup;
@@ -43,7 +47,7 @@ class GroupServiceTest {
         when(clock.instant()).thenReturn(Instant.parse(fixedTime));
         when(clock.getZone()).thenReturn(ZoneId.systemDefault());
 
-        groupService = new GroupService(groupRepository, clock);
+        groupService = new GroupService(groupRepository, clock, messageSourceAccessor);
 
         group = Group.builder()
                 .categoryId(5)

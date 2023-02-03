@@ -3,10 +3,8 @@ package com.api;
 import com.api.controller.ApiResult;
 import com.api.error.NotFoundException;
 import com.api.model.group.Group;
-import com.api.util.MessageUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +33,12 @@ class GeneralExceptionHandlerTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-
         handler = new GeneralExceptionHandler();
-        e = new NotFoundException(Group.class, 1L);
+        e = new NotFoundException(messageSourceAccessor, Group.class, 1L);
     }
 
     @Test
     void test_handleNotFoundException () {
-        MessageUtils.setMessageSourceAccessor(messageSourceAccessor);
-
         res = handler.handleNotFoundException(e);
         log.info(Objects.requireNonNull(res.getBody()).getError().toString());
 

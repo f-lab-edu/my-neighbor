@@ -1,6 +1,5 @@
 package com.api.config;
 
-import com.api.util.MessageUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +17,6 @@ public class ServiceConfig {
 
     @Bean
     public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
-        MessageSourceAccessor messageSourceAccessor = new MessageSourceAccessor(messageSource);
-        MessageUtils.setMessageSourceAccessor(messageSourceAccessor);
-        return messageSourceAccessor;
+        return new MessageSourceAccessor(messageSource);
     }
 }
