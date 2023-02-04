@@ -4,7 +4,6 @@ import com.api.error.NotFoundException;
 import com.api.model.group.Post;
 import com.api.repository.group.PostRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,6 @@ public class PostService {
     private final PostRepository postRepository;
 
     private final Clock clock;
-
-    private final MessageSourceAccessor messageSourceAccessor;
 
     @Transactional
     public Post save(Post post) {
@@ -49,7 +46,7 @@ public class PostService {
 
     @Transactional
     public Post updatePost(Post post) {
-        Post target = findByPostIdAndGroupId(post.getPostId(), post.getGroupId()).orElseThrow(() -> new NotFoundException(messageSourceAccessor, Post.class, post.getPostId(), post.getGroupId()));
+        Post target = findByPostIdAndGroupId(post.getPostId(), post.getGroupId()).orElseThrow(() -> new NotFoundException(Post.class, post.getPostId(), post.getGroupId()));
         target.setContents(post.getContents());
         target.setPublicType(post.getPublicType());
         target.updateModifyAt(clock);
@@ -58,7 +55,7 @@ public class PostService {
 
     @Transactional
     public Post deletePost(Long postId) {
-        Post target = findById(postId).orElseThrow(() -> new NotFoundException(messageSourceAccessor, Post.class, postId));
+        Post target = findById(postId).orElseThrow(() -> new NotFoundException(Post.class, postId));
         postRepository.delete(target);
         return target;
     }

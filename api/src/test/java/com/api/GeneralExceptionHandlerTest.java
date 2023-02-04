@@ -2,14 +2,11 @@ package com.api;
 
 import com.api.controller.ApiResult;
 import com.api.error.NotFoundException;
-import com.api.model.group.Group;
+import com.api.model.group.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -17,7 +14,6 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 class GeneralExceptionHandlerTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -26,15 +22,12 @@ class GeneralExceptionHandlerTest {
 
     ResponseEntity<ApiResult<?>> res;
 
-    @Autowired
-    MessageSourceAccessor messageSourceAccessor;
-
     NotFoundException e;
 
     @BeforeEach
     void setUp() {
         handler = new GeneralExceptionHandler();
-        e = new NotFoundException(messageSourceAccessor, Group.class, 1L);
+        e = new NotFoundException(Post.class, 1L, 2L);
     }
 
     @Test

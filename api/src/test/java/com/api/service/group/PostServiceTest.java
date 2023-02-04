@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.support.MessageSourceAccessor;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -27,9 +26,6 @@ class PostServiceTest {
     PostRepository postRepository;
 
     @Mock
-    private MessageSourceAccessor messageSourceAccessor;
-
-    @Mock
     private Clock clock;
 
     private Post noIdPost;
@@ -44,7 +40,7 @@ class PostServiceTest {
         when(clock.instant()).thenReturn(Instant.parse(fixedTime));
         when(clock.getZone()).thenReturn(ZoneId.systemDefault());
 
-        postService = new PostService(postRepository, clock, messageSourceAccessor);
+        postService = new PostService(postRepository, clock);
 
         noIdPost = Post.builder()
                 .groupId(1L)

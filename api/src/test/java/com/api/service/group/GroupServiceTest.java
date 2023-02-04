@@ -32,9 +32,6 @@ class GroupServiceTest {
     @Mock
     private Clock clock;
 
-    @Mock
-    private MessageSourceAccessor messageSourceAccessor;
-
     private Group group;
 
     private Group resultGroup;
@@ -47,7 +44,7 @@ class GroupServiceTest {
         when(clock.instant()).thenReturn(Instant.parse(fixedTime));
         when(clock.getZone()).thenReturn(ZoneId.systemDefault());
 
-        groupService = new GroupService(groupRepository, clock, messageSourceAccessor);
+        groupService = new GroupService(groupRepository, clock);
 
         group = Group.builder()
                 .categoryId(5)
