@@ -6,13 +6,17 @@ import java.util.StringJoiner;
 
 public class ApiError {
 
-    private int status;
-
     private String message;
 
-    public ApiError(HttpStatus status, String message) {
-        this.status = status.value();
+    private int status;
+
+    public ApiError(Throwable throwable, HttpStatus httpStatus) {
+        this(throwable.getMessage(), httpStatus);
+    }
+
+    public ApiError(String message, HttpStatus status) {
         this.message = message;
+        this.status = status.value();
     }
 
     public int getStatus() {

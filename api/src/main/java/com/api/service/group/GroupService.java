@@ -1,5 +1,6 @@
 package com.api.service.group;
 
+import com.api.error.NotFoundException;
 import com.api.model.group.Group;
 import com.api.repository.group.GroupRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class GroupService {
 
     @Transactional
     public Group updateGroup(Group group) {
-        Group target = findById(group.getGroupId()).orElseThrow(RuntimeException::new);
+        Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(Group.class, group.getGroupId()));
         target.setCategoryId(group.getCategoryId());
         target.setLeaderId(group.getLeaderId());
         target.setName(group.getName());
@@ -54,7 +55,7 @@ public class GroupService {
 
     @Transactional
     public Group deleteGroup(Long groupId) {
-        Group target = findById(groupId).orElseThrow(RuntimeException::new);
+        Group target = findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));
         groupRepository.delete(target);
         return target;
     }
