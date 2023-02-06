@@ -1,10 +1,11 @@
 package com.api.dto;
 
-import com.api.model.user.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
 @Getter
 public class UserDto {
 
@@ -14,9 +15,7 @@ public class UserDto {
 
     private String name;
 
-    private Long cityId;
-
-    private Long townId;
+    private Integer regionId;
 
     private String profileImageUrl;
 
@@ -24,25 +23,13 @@ public class UserDto {
 
     private LocalDateTime createAt;
 
-    public UserDto(User source) {
-        this.userId = source.getUserId();
-        this.email = source.getEmail();
-        this.name = source.getName();
-        this.cityId = source.getCityId();
-        this.townId = source.getTownId();
-        this.profileImageUrl = source.getProfileImageUrl();
-        this.lastLoginAt = source.getLastLoginAt();
-        this.createAt = source.getCreateAt();
-    }
-
     @Override
     public String toString() {
         return "UserDto{" +
                 "userId=" + userId +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
-                ", cityId=" + cityId +
-                ", townId=" + townId +
+                ", regionId=" + regionId +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
                 ", lastLoginAt=" + lastLoginAt +
                 ", createAt=" + createAt +

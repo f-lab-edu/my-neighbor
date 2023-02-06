@@ -1,4 +1,4 @@
-package com.api.model.group;
+package com.api.model.connection;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,6 +31,15 @@ public class Connection {
     private Long userId;
 
     private LocalDateTime createAt;
+
+    public Connection(Long groupId, Long userId) {
+        this.groupId = groupId;
+        this.userId = userId;
+    }
+
+    public void updateCreateAt(Clock clock) {
+        this.createAt = LocalDateTime.now(clock);
+    }
 
     @Override
     public String toString() {

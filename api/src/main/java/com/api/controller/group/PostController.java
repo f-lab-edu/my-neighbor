@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.api.controller.ApiResult.OK;
+import static com.api.controller.ApiResult.Ok;
 import static com.api.controller.group.GroupMapper.toDto;
 import static com.api.controller.group.GroupMapper.toEntity;
 
@@ -32,7 +32,7 @@ public class PostController {
     // 그룹 내 모든 포스트 조회
     @GetMapping("/{groupId}")
     public ApiResult<List<PostDto>> postList(@PathVariable Long groupId) {
-        return OK(
+        return Ok(
             postService.findAllByGroupId(groupId)
                     .stream()
                     .map(GroupMapper::toDto)
@@ -43,7 +43,7 @@ public class PostController {
     // 포스트 작성
     @PostMapping
     public ApiResult<PostDto> postSave(@RequestBody CreatePostRequest request) {
-        return OK(
+        return Ok(
             toDto(
                 postService.save(toEntity(request))
             )
@@ -53,7 +53,7 @@ public class PostController {
     // 포스트 수정
     @PatchMapping
     public ApiResult<PostDto> postModify(@RequestBody UpdatePostRequest request) {
-        return OK(
+        return Ok(
             toDto(
                 postService.updatePost(toEntity(request))
             )
@@ -63,7 +63,7 @@ public class PostController {
     // 포스트 삭제
     @DeleteMapping("/{postId}")
     public ApiResult<PostDto> postRemove(@PathVariable Long postId) {
-        return OK(
+        return Ok(
                 toDto(postService.deletePost(postId))
         );
     }

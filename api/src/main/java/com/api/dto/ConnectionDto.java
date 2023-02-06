@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class GroupJoinRequest {
+public class ConnectionDto {
 
     private Long groupId;
 

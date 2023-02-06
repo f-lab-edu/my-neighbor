@@ -9,3 +9,7 @@ INSERT INTO posts(group_id,writer_id,writer_email,writer_name,contents,count,pub
 INSERT INTO posts(group_id,writer_id,writer_email,writer_name,contents,count,public_type,modify_at,create_at) VALUES (1,2,'test01@gmail.com','tester01','posting content 2',30,'PUBLIC','2023-01-25 13:15:00','2023-01-03 19:23:40');
 INSERT INTO posts(group_id,writer_id,writer_email,writer_name,contents,count,public_type,modify_at,create_at) VALUES (2,3,'test02@gmail.com','tester02','posting content 3',5,'PRIVATE','2023-01-25 13:15:00','2023-01-01 19:23:40');
 
+INSERT INTO connections(group_id,user_id,create_at) VALUES (1,1,'2023-01-05 10:00:00');
+INSERT INTO connections(group_id,user_id,create_at) VALUES (1,3,'2022-12-20 10:00:00');
+INSERT INTO connections(group_id,user_id,create_at) VALUES (2,3,'2022-12-20 10:00:00');
+

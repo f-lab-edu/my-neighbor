@@ -18,7 +18,7 @@ public class ApiResult<T> {
         this.error = error;
     }
 
-    public static <T> ApiResult<T> OK(T response) {
+    public static <T> ApiResult<T> Ok(T response) {
         return new ApiResult<>(true, response, null);
     }
 
