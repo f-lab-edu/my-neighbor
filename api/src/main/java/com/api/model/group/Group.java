@@ -46,7 +46,7 @@ public class Group {
     private String groupImageUrl;
 
     @NotNull(message = "Public Type is mandatory")
-    private String publicType;
+    private GroupPublicType publicType;
 
     @Setter
     private int maxNum;

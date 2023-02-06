@@ -1,5 +1,6 @@
 package com.api.dto;
 
+import com.api.model.group.GroupPublicType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -19,7 +20,7 @@ public class UpdateGroupRequest {
 
     private String groupImageUrl;
 
-    private String publicType;
+    private GroupPublicType publicType;
 
     private int maxNum;
 
