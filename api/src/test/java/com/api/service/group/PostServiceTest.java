@@ -1,6 +1,7 @@
 package com.api.service.group;
 
 import com.api.model.group.Post;
+import com.api.model.group.PostPublicType;
 import com.api.repository.group.PostRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +49,7 @@ class PostServiceTest {
                 .writerEmail("testeamil@gmail.com")
                 .writerName("test email")
                 .contents("test content")
-                .publicType("PRIVATE_POST")
+                .publicType(PostPublicType.PUBLIC)
                 .build();
 
         post = Post.builder()
@@ -58,7 +59,7 @@ class PostServiceTest {
                 .writerEmail("testeamil@gmail.com")
                 .writerName("test email")
                 .contents("test content")
-                .publicType("PRIVATE_POST")
+                .publicType(PostPublicType.PUBLIC)
                 .build();
     }
 

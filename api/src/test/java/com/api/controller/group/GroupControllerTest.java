@@ -4,6 +4,7 @@ import com.api.controller.ApiResult;
 import com.api.dto.GroupDto;
 import com.api.dto.CreateGroupRequest;
 import com.api.model.group.Group;
+import com.api.model.group.GroupPublicType;
 import com.api.service.group.GroupService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,8 +35,8 @@ class GroupControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        group1 = new Group(1L, 1, 24L, "test-group1", "test group 1 desc", null, "PUBLIC_GROUP", 10, 1, 2, null, null);
-        group2 = new Group(2L, 1, 4254L, "test-group2", "test group 2 desc", null, "PRIVATE_GROUP", 120, 31, 12, null, null);
+        group1 = new Group(1L, 1, 24L, "test-group1", "test group 1 desc", null, GroupPublicType.PUBLIC, 10, 1, 2, null, null);
+        group2 = new Group(2L, 1, 4254L, "test-group2", "test group 2 desc", null, GroupPublicType.PUBLIC, 120, 31, 12, null, null);
 
         groups = new ArrayList<>();
         groups.add(group1);
@@ -56,7 +57,7 @@ class GroupControllerTest {
 
     @Test
     public void test_createGroup_isSuccess() {
-        CreateGroupRequest request = new CreateGroupRequest(10, 1L, "create-test-group", null, null, "PRIVATE_GROUP", 10, 1, 4);
+        CreateGroupRequest request = new CreateGroupRequest(10, 1L, "create-test-group", null, null, GroupPublicType.PUBLIC, 10, 1, 4);
         when(groupService.save(any(Group.class))).thenReturn(group1);
 
         ApiResult<GroupDto> result = groupController.createGroup(request);
