@@ -8,8 +8,6 @@ import com.api.dto.GroupDto;
 import com.api.dto.UserDto;
 import com.api.model.connection.Connection;
 import com.api.service.connection.ConnectionService;
-import com.api.service.group.GroupService;
-import com.api.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +31,6 @@ public class ConnectionController {
 
     private final ConnectionService connectionService;
 
-    private final GroupService groupService;
-
-    private final UserService userService;
-
     // 사용자가 그룹 가입
     @PostMapping("/join")
     public ApiResult<ConnectionDto> connectionSave(@RequestBody ConnectionDto dto) {
@@ -51,7 +45,7 @@ public class ConnectionController {
         List<Long> userIdList = connectionService.findAllByGroupId(groupId);
 
         return Ok(
-            userService.findAllByUserIdList(userIdList)
+            connectionService.findAllByUserIdList(userIdList)
                 .stream()
                 .map(UserMapper::toDto)
                 .collect(toList())
@@ -64,7 +58,7 @@ public class ConnectionController {
         List<Long> groupIdList = connectionService.findAllByUserId(userId);
 
         return Ok(
-            groupService.findAllByGroupIdList(groupIdList)
+            connectionService.findAllByGroupIdList(groupIdList)
                 .stream()
                 .map(GroupMapper::toDto)
                 .collect(toList())

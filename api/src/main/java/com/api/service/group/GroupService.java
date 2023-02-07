@@ -11,8 +11,6 @@ import java.time.Clock;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
-
 @Service
 @RequiredArgsConstructor
 public class GroupService {
@@ -39,13 +37,7 @@ public class GroupService {
     public Optional<Group> findById(Long groupId) {
         return groupRepository.findById(groupId);
     }
-
-    public List<Group> findAllByGroupIdList(List<Long> list) {
-        return list.stream()
-                .map(r -> findById(r).orElseThrow(() -> new NotFoundException(Group.class, r)))
-                .collect(toList());
-    }
-
+    
     @Transactional
     public Group updateGroup(Group group) {
         Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(Group.class, group.getGroupId()));

@@ -71,6 +71,19 @@ public class ConnectionService {
         return connectionRepository.findByGroupIdAndUserId(groupId, userId);
     }
 
+    public List<Group> findAllByGroupIdList(List<Long> list) {
+        List<Group> res = groupRepository.findAllByGroupIds(list);
+        if(res.size() != list.size()) throw new NotFoundException(Group.class);
+        return res;
+    }
+
+    public List<User> findAllByUserIdList(List<Long> list) {
+        List<User> res = userRepository.findAllByUserIds(list);
+        if(res.size() != list.size()) throw new NotFoundException(User.class);
+        return res;
+    }
+
+
     public void checkGroupByGroupId(Long groupId) {
         groupRepository.findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));
     }
