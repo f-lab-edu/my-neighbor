@@ -29,7 +29,6 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
     public List<Group> findByCategoryId(Integer categoryId) {
         return groupRepository.findByCategoryId(categoryId);
     }

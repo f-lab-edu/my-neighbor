@@ -45,13 +45,11 @@ public class ConnectionService {
         return connectionRepository.save(connection);
     }
 
-    @Transactional(readOnly = true)
     public List<Long> findAllByGroupId(Long groupId) {
         List<Connection> res = connectionRepository.findAllByGroupId(groupId);
         return res.stream().map(Connection::getUserId).collect(toList());
     }
 
-    @Transactional(readOnly = true)
     public List<Long> findAllByUserId(Long userId) {
         List<Connection> res = connectionRepository.findAllByUserId(userId);
         return res.stream().map(Connection::getGroupId).collect(toList());
@@ -66,23 +64,21 @@ public class ConnectionService {
         return connection;
     }
 
-    @Transactional(readOnly = true)
     public Optional<Connection> findByGroupIdAndUserId(Long groupId, Long userId) {
         return connectionRepository.findByGroupIdAndUserId(groupId, userId);
     }
 
-    public List<Group> findAllByGroupIdList(List<Long> list) {
-        List<Group> res = groupRepository.findAllByGroupIds(list);
+    public List<Group> findByGroupIdIn(List<Long> list) {
+        List<Group> res = groupRepository.findByGroupIdIn(list);
         if(res.size() != list.size()) throw new NotFoundException(Group.class);
         return res;
     }
 
-    public List<User> findAllByUserIdList(List<Long> list) {
-        List<User> res = userRepository.findAllByUserIds(list);
+    public List<User> findByUserIdIn(List<Long> list) {
+        List<User> res = userRepository.findByUserIdIn(list);
         if(res.size() != list.size()) throw new NotFoundException(User.class);
         return res;
     }
-
 
     public void checkGroupByGroupId(Long groupId) {
         groupRepository.findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));

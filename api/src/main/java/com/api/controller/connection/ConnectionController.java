@@ -45,7 +45,7 @@ public class ConnectionController {
         List<Long> userIdList = connectionService.findAllByGroupId(groupId);
 
         return Ok(
-            connectionService.findAllByUserIdList(userIdList)
+            connectionService.findByUserIdIn(userIdList)
                 .stream()
                 .map(UserMapper::toDto)
                 .collect(toList())
@@ -58,7 +58,7 @@ public class ConnectionController {
         List<Long> groupIdList = connectionService.findAllByUserId(userId);
 
         return Ok(
-            connectionService.findAllByGroupIdList(groupIdList)
+            connectionService.findByGroupIdIn(groupIdList)
                 .stream()
                 .map(GroupMapper::toDto)
                 .collect(toList())

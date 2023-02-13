@@ -25,7 +25,6 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    @Transactional(readOnly = true)
     public List<Post> findAllByGroupId(Long groupId) {
         return postRepository.findAllByGroupId(groupId);
     }
@@ -34,12 +33,10 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
-    @Transactional(readOnly = true)
     public Optional<Post> findByPostIdAndGroupId(Long postId, Long groupId) {
         return postRepository.findByPostIdAndGroupId(postId, groupId);
     }
 
-    @Transactional(readOnly = true)
     public List<Post> findByWriterId(Long writerId) {
         return postRepository.findByWriterId(writerId);
     }
