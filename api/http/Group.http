@@ -8,7 +8,7 @@ Content-Type: application/json
   "name": "new group",
   "desc": null,
   "groupImageUrl": null,
-  "publicType": "PRIVATE_GROUP",
+  "publicType": "PRIVATE",
   "maxNum": 100,
   "cityId": 5,
   "townId": 3
@@ -25,7 +25,7 @@ Content-Type: application/json
   "name": "new group - update",
   "desc": null,
   "groupImageUrl": null,
-  "publicType": "PUBLIC_GROUP",
+  "publicType": "PUBLIC",
   "maxNum": 100,
   "cityId": 5,
   "townId": 3
@@ -50,7 +50,7 @@ Content-Type: application/json
   "writerEmail": "test00@gmail.com",
   "writerName": "tester00",
   "contents": "new post content",
-  "publicType": "PRIVATE_POST"
+  "publicType": "MEMBER"
 }
 
 ### Update post
@@ -61,7 +61,7 @@ Content-Type: application/json
   "postId": 1,
   "groupId": 1,
   "contents": "update content",
-  "publicType": "PRIVATE_POST"
+  "publicType": "PUBLIC"
 }
 
 ### Delete post

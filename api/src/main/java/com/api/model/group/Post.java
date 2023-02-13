@@ -46,7 +46,7 @@ public class Post {
 
     @NotNull
     @Setter
-    private String publicType;
+    private PostPublicType publicType;
 
     @Column(insertable = false)
     private LocalDateTime modifyAt;

@@ -1,5 +1,6 @@
 package com.api.dto;
 
+import com.api.model.group.PostPublicType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +14,7 @@ public class UpdatePostRequest {
 
     private String contents;
 
-    private String publicType;
+    private PostPublicType publicType;
 
     @Override
     public String toString() {

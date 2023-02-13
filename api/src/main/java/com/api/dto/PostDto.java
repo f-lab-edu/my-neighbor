@@ -1,5 +1,6 @@
 package com.api.dto;
 
+import com.api.model.group.PostPublicType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -23,7 +24,7 @@ public class PostDto {
 
     private int count;
 
-    private String publicType;
+    private PostPublicType publicType;
 
     private LocalDateTime modifyAt;
 

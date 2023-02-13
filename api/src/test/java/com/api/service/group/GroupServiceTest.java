@@ -1,6 +1,7 @@
 package com.api.service.group;
 
 import com.api.model.group.Group;
+import com.api.model.group.GroupPublicType;
 import com.api.repository.group.GroupRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ class GroupServiceTest {
                 .categoryId(5)
                 .leaderId(1L)
                 .name("service test group")
-                .publicType("PRIVATE_GROUP")
+                .publicType(GroupPublicType.PRIVATE)
                 .build();
 
         resultGroup = Group.builder()
@@ -58,7 +59,7 @@ class GroupServiceTest {
                 .categoryId(3)
                 .leaderId(2L)
                 .name("service test result group")
-                .publicType("PUBLIC_GROUP")
+                .publicType(GroupPublicType.PUBLIC)
                 .build();
     }
 
