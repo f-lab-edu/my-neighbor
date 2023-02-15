@@ -29,7 +29,6 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
     public List<Group> findByCategoryId(Integer categoryId) {
         return groupRepository.findByCategoryId(categoryId);
     }
@@ -37,7 +36,7 @@ public class GroupService {
     public Optional<Group> findById(Long groupId) {
         return groupRepository.findById(groupId);
     }
-
+    
     @Transactional
     public Group updateGroup(Group group) {
         Group target = findById(group.getGroupId()).orElseThrow(() -> new NotFoundException(Group.class, group.getGroupId()));
@@ -47,8 +46,7 @@ public class GroupService {
         target.setDesc(group.getDesc());
         target.setGroupImageUrl(group.getGroupImageUrl());
         target.setMaxNum(group.getMaxNum());
-        target.setCityId(group.getCityId());
-        target.setTownId(group.getTownId());
+        target.setRegionId(group.getRegionId());
         target.updateModifyAt(clock);
         return target;
     }

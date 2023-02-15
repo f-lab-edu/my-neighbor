@@ -43,7 +43,7 @@ class UserServiceTest {
         email = "yuna@gmail.com";
         password = "pw123";
 
-        user = new User(userId, email, name, password, null, null, null, null, now());
+        user = new User(userId, email, name, password, null, null, null, now());
     }
 
     @Test

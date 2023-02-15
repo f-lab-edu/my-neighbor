@@ -33,9 +33,7 @@ public class User {
     @NotNull
     private String password;
 
-    private Long cityId;
-
-    private Long townId;
+    private Integer regionId;
 
     private String profileImageUrl;
 
@@ -44,7 +42,7 @@ public class User {
     private LocalDateTime createAt;
 
     public User(String email, String name, String password) {
-        this(null, email, name, password, null, null, null, null, null);
+        this(null, email, name, password, null, null, null, null);
     }
 
     @Override
@@ -69,8 +67,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", cityId=" + cityId +
-                ", townId=" + townId +
+                ", regionId=" + regionId +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
                 ", lastLoginAt=" + lastLoginAt +
                 ", createAt=" + createAt +

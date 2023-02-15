@@ -35,8 +35,27 @@ class GroupControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        group1 = new Group(1L, 1, 24L, "test-group1", "test group 1 desc", null, GroupPublicType.PUBLIC, 10, 1, 2, null, null);
-        group2 = new Group(2L, 1, 4254L, "test-group2", "test group 2 desc", null, GroupPublicType.PUBLIC, 120, 31, 12, null, null);
+        group1 = Group.builder().
+                groupId(1L)
+                .categoryId(1)
+                .leaderId(24L)
+                .name("test-group1")
+                .desc("test group 1 desc")
+                .publicType(GroupPublicType.PUBLIC)
+                .maxNum(10)
+                .regionId(1)
+                .build();
+
+        group2 = Group.builder().
+                groupId(2L)
+                .categoryId(1)
+                .leaderId(4254L)
+                .name("test-group2")
+                .desc("test group 2 desc")
+                .publicType(GroupPublicType.PRIVATE)
+                .maxNum(120)
+                .regionId(31)
+                .build();
 
         groups = new ArrayList<>();
         groups.add(group1);
@@ -49,7 +68,7 @@ class GroupControllerTest {
     public void test_getGroups_isSuccess() {
         when(groupService.findAll()).thenReturn(groups);
 
-        ApiResult<List<GroupDto>> groupListResult = groupController.getGroups();
+        ApiResult<List<GroupDto>> groupListResult = groupController.groupList();
 
         assertThat(groupListResult.getResponse()).isNotNull();
         assertThat(groupListResult.getResponse().size()).isEqualTo(2);
@@ -60,7 +79,7 @@ class GroupControllerTest {
         CreateGroupRequest request = new CreateGroupRequest(10, 1L, "create-test-group", null, null, GroupPublicType.PUBLIC, 10, 1, 4);
         when(groupService.save(any(Group.class))).thenReturn(group1);
 
-        ApiResult<GroupDto> result = groupController.createGroup(request);
+        ApiResult<GroupDto> result = groupController.groupSave(request);
 
         assertThat(result.getResponse()).isNotNull();
         assertThat(result.getResponse().getGroupId()).isNotNull();

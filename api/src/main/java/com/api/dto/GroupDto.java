@@ -26,9 +26,7 @@ public class GroupDto {
 
     private int maxNum;
 
-    private int cityId;
-
-    private int townId;
+    private int regionId;
 
     private LocalDateTime modifyAt;
 
@@ -45,8 +43,7 @@ public class GroupDto {
                 ", groupImageUrl='" + groupImageUrl + '\'' +
                 ", publicType=" + publicType +
                 ", maxNum=" + maxNum +
-                ", cityId=" + cityId +
-                ", townId=" + townId +
+                ", cityId=" + regionId +
                 ", modifyAt=" + modifyAt +
                 ", createAt=" + createAt +
                 '}';

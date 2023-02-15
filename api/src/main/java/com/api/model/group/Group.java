@@ -52,10 +52,7 @@ public class Group {
     private int maxNum;
 
     @Setter
-    private int cityId;
-
-    @Setter
-    private int townId;
+    private Integer regionId;
 
     private LocalDateTime modifyAt;
 
@@ -80,8 +77,7 @@ public class Group {
                 ", groupImageUrl='" + groupImageUrl + '\'' +
                 ", publicType=" + publicType +
                 ", maxNum=" + maxNum +
-                ", cityId=" + cityId +
-                ", townId=" + townId +
+                ", regionId=" + regionId +
                 ", modifyAt=" + modifyAt +
                 ", createAt=" + createAt +
                 '}';

@@ -14,6 +14,8 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
     List<Group> findByCategoryId(Integer categoryId);
 
+    List<Group> findByGroupIdIn(List<Long> groupIdList);
+
     Optional<Group> findById(Long groupId);
 
     void delete(Group group);

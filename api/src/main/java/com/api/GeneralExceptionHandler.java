@@ -13,10 +13,19 @@ import static com.api.controller.ApiResult.ERROR;
 @RestControllerAdvice
 public class GeneralExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ApiResult<?>> handleNotFoundException(NotFoundException e) {
+    private ResponseEntity<ApiResult<?>> newResponse(Throwable throwable, HttpStatus status) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        return new ResponseEntity<>(ERROR(e, HttpStatus.NOT_FOUND), headers, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ERROR(throwable, status), headers, status);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ApiResult<?>> handleNotFoundException(NotFoundException e) {
+        return newResponse(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({Exception.class, RuntimeException.class})
+    public ResponseEntity<?> handleException(Exception e) {
+        return newResponse(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
