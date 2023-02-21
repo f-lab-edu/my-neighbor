@@ -1,7 +1,7 @@
 package com.api.service.connection;
 
-import com.api.error.DuplicationException;
-import com.api.error.NotFoundException;
+import com.api.error.GroupNotFoundException;
+import com.api.error.UserNotFoundException;
 import com.api.model.connection.Connection;
 import com.api.model.group.Group;
 import com.api.model.user.User;
@@ -38,8 +38,7 @@ public class ConnectionService {
         checkGroupByGroupId(groupId);
         checkUserByUserId(userId);
 
-        if(findByGroupIdAndUserId(groupId, userId).isPresent())
-            throw new DuplicationException(Connection.class, groupId, userId);
+        if(findByGroupIdAndUserId(groupId, userId).isPresent()) return connection;
 
         connection.updateCreateAt(clock);
         return connectionRepository.save(connection);
@@ -70,21 +69,21 @@ public class ConnectionService {
 
     public List<Group> findByGroupIdIn(List<Long> list) {
         List<Group> res = groupRepository.findByGroupIdIn(list);
-        if(res.size() != list.size()) throw new NotFoundException(Group.class);
+        if(res.size() != list.size()) throw new GroupNotFoundException("Group not found.");
         return res;
     }
 
     public List<User> findByUserIdIn(List<Long> list) {
         List<User> res = userRepository.findByUserIdIn(list);
-        if(res.size() != list.size()) throw new NotFoundException(User.class);
+        if(res.size() != list.size()) throw new UserNotFoundException("User not found.");
         return res;
     }
-
+    
     public void checkGroupByGroupId(Long groupId) {
-        groupRepository.findById(groupId).orElseThrow(() -> new NotFoundException(Group.class, groupId));
+        groupRepository.findById(groupId).orElseThrow(GroupNotFoundException::new);
     }
 
     public void checkUserByUserId(Long userId) {
-        userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
+        userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 }

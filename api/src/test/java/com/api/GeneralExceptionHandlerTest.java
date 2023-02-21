@@ -1,8 +1,7 @@
 package com.api;
 
 import com.api.controller.ApiResult;
-import com.api.error.NotFoundException;
-import com.api.model.group.Post;
+import com.api.error.PostNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -22,12 +21,12 @@ class GeneralExceptionHandlerTest {
 
     ResponseEntity<ApiResult<?>> res;
 
-    NotFoundException e;
+    PostNotFoundException e;
 
     @BeforeEach
     void setUp() {
         handler = new GeneralExceptionHandler();
-        e = new NotFoundException(Post.class, 1L, 2L);
+        e = new PostNotFoundException();
     }
 
     @Test

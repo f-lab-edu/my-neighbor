@@ -1,7 +1,7 @@
 package com.api.service.connection;
 
-import com.api.error.DuplicationException;
-import com.api.error.NotFoundException;
+import com.api.error.GroupNotFoundException;
+import com.api.error.UserNotFoundException;
 import com.api.model.connection.Connection;
 import com.api.model.group.Group;
 import com.api.model.user.User;
@@ -81,31 +81,18 @@ class ConnectionServiceTest {
     @Test
     void 그룹이_존재하지않으면_커넥션을_생성할수_없다() {
         when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(groupRepository.findById(any())).thenThrow(new NotFoundException(Group.class, conn.getGroupId()));
+        when(groupRepository.findById(any())).thenThrow(new GroupNotFoundException());
         when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
 
-        Throwable e = assertThrows(NotFoundException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
+        assertThrows(GroupNotFoundException.class, () -> connectionService.saveConnection(conn));
     }
 
     @Test
     void 유저가_존재하지않으면_커넥션을_생성할수_없다() {
         when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(userRepository.findById(any())).thenThrow(new NotFoundException(User.class, conn.getUserId()));
+        when(userRepository.findById(any())).thenThrow(new UserNotFoundException());
         when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(group));
 
-        Throwable e = assertThrows(NotFoundException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
-    }
-
-    @Test
-    void 이미_생성된_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(group));
-        when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
-        when(connectionRepository.findByGroupIdAndUserId(any(), any())).thenThrow(new DuplicationException(Connection.class, conn.getGroupId(), conn.getUserId()));
-
-        Throwable e = assertThrows(DuplicationException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
+        assertThrows(UserNotFoundException.class, () -> connectionService.saveConnection(conn));
     }
 }
