@@ -1,0 +1,8 @@
+### Publish Group Join
+POST http://localhost/api/connection/join
+Content-Type: application/json
+
+{
+  "groupId": 1,
+  "userId": 2
+}

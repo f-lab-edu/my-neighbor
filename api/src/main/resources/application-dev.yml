@@ -15,3 +15,15 @@ spring:
     hibernate:
       ddl-auto: create
     defer-datasource-initialization: true
+  kafka:
+    bootstrap-servers: 3.37.62.176:9092
+    consumer:
+      group-id: my-neighbor
+
+##User defined Properties
+test:
+  topic: embedded-test-topic
+
+kafka:
+  topic: groupJoin-events
+

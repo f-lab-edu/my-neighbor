@@ -2,9 +2,11 @@ package com.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ConnectionDto {
 
     private Long groupId;
@@ -13,7 +15,7 @@ public class ConnectionDto {
 
     @Override
     public String toString() {
-        return "GroupJoinRequest{" +
+        return "ConnectionDto{" +
                 "groupId=" + groupId +
                 ", userId=" + userId +
                 '}';
