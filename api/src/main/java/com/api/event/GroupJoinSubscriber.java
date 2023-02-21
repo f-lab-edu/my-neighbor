@@ -33,10 +33,6 @@ public class GroupJoinSubscriber {
         latch.countDown();
     }
 
-    public void resetLatch() {
-        latch = new CountDownLatch(1);
-    }
-
     public Connection getResult() {
         return result;
     }
