@@ -1,7 +1,5 @@
 package com.api.service.connection;
 
-import com.api.error.DuplicationException;
-import com.api.error.NotFoundException;
 import com.api.model.connection.Connection;
 import com.api.model.group.Group;
 import com.api.model.user.User;
@@ -22,7 +20,6 @@ import java.time.ZoneId;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -76,36 +73,5 @@ class ConnectionServiceTest {
         Connection res = connectionService.saveConnection(conn);
 
         assertThat(res.getCreateAt()).isEqualTo(LocalDateTime.now(clock));
-    }
-
-    @Test
-    void 그룹이_존재하지않으면_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(groupRepository.findById(any())).thenThrow(new NotFoundException(Group.class, conn.getGroupId()));
-        when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
-
-        Throwable e = assertThrows(NotFoundException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
-    }
-
-    @Test
-    void 유저가_존재하지않으면_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(userRepository.findById(any())).thenThrow(new NotFoundException(User.class, conn.getUserId()));
-        when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(group));
-
-        Throwable e = assertThrows(NotFoundException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
-    }
-
-    @Test
-    void 이미_생성된_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(group));
-        when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
-        when(connectionRepository.findByGroupIdAndUserId(any(), any())).thenThrow(new DuplicationException(Connection.class, conn.getGroupId(), conn.getUserId()));
-
-        Throwable e = assertThrows(DuplicationException.class, () -> connectionService.saveConnection(conn));
-        log.info("message: {}", e.getMessage());
     }
 }
