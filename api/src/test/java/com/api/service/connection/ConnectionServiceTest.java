@@ -1,5 +1,7 @@
 package com.api.service.connection;
 
+import com.api.error.GroupNotFoundException;
+import com.api.error.UserNotFoundException;
 import com.api.model.connection.Connection;
 import com.api.model.group.Group;
 import com.api.model.user.User;

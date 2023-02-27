@@ -1,7 +1,9 @@
 package com.api;
 
 import com.api.controller.ApiResult;
-import com.api.error.NotFoundException;
+import com.api.error.GroupNotFoundException;
+import com.api.error.PostNotFoundException;
+import com.api.error.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,8 @@ public class GeneralExceptionHandler {
         return new ResponseEntity<>(ERROR(throwable, status), headers, status);
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ApiResult<?>> handleNotFoundException(NotFoundException e) {
+    @ExceptionHandler({UserNotFoundException.class, GroupNotFoundException.class, PostNotFoundException.class})
+    public ResponseEntity<ApiResult<?>> handleNotFoundException(RuntimeException e) {
         return newResponse(e, HttpStatus.NOT_FOUND);
     }
 

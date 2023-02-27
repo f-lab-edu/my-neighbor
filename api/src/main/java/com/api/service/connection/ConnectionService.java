@@ -1,6 +1,7 @@
 package com.api.service.connection;
 
-import com.api.error.NotFoundException;
+import com.api.error.GroupNotFoundException;
+import com.api.error.UserNotFoundException;
 import com.api.model.connection.Connection;
 import com.api.model.group.Group;
 import com.api.model.user.User;
@@ -52,13 +53,13 @@ public class ConnectionService {
 
     public List<Group> findByGroupIdIn(List<Long> list) {
         List<Group> res = groupRepository.findByGroupIdIn(list);
-        if(res.size() != list.size()) throw new NotFoundException(Group.class);
+        if(res.size() != list.size()) throw new GroupNotFoundException("Group not found.");
         return res;
     }
 
     public List<User> findByUserIdIn(List<Long> list) {
         List<User> res = userRepository.findByUserIdIn(list);
-        if(res.size() != list.size()) throw new NotFoundException(User.class);
+        if(res.size() != list.size()) throw new UserNotFoundException("User not found.");
         return res;
     }
 }
