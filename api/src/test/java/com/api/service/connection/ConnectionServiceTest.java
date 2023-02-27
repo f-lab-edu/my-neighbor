@@ -22,7 +22,6 @@ import java.time.ZoneId;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -76,23 +75,5 @@ class ConnectionServiceTest {
         Connection res = connectionService.saveConnection(conn);
 
         assertThat(res.getCreateAt()).isEqualTo(LocalDateTime.now(clock));
-    }
-
-    @Test
-    void 그룹이_존재하지않으면_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(groupRepository.findById(any())).thenThrow(new GroupNotFoundException());
-        when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
-
-        assertThrows(GroupNotFoundException.class, () -> connectionService.saveConnection(conn));
-    }
-
-    @Test
-    void 유저가_존재하지않으면_커넥션을_생성할수_없다() {
-        when(connectionRepository.save(any(Connection.class))).thenReturn(resConn);
-        when(userRepository.findById(any())).thenThrow(new UserNotFoundException());
-        when(groupRepository.findById(any())).thenReturn(Optional.ofNullable(group));
-
-        assertThrows(UserNotFoundException.class, () -> connectionService.saveConnection(conn));
     }
 }

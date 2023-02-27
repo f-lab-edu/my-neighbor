@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,14 +31,6 @@ public class ConnectionService {
 
     @Transactional
     public Connection saveConnection(Connection connection) {
-        Long groupId = connection.getGroupId();
-        Long userId = connection.getUserId();
-
-        checkGroupByGroupId(groupId);
-        checkUserByUserId(userId);
-
-        if(findByGroupIdAndUserId(groupId, userId).isPresent()) return connection;
-
         connection.updateCreateAt(clock);
         return connectionRepository.save(connection);
     }
@@ -56,15 +47,8 @@ public class ConnectionService {
 
     @Transactional
     public Connection deleteConnection(Connection connection) {
-        checkGroupByGroupId(connection.getGroupId());
-        checkUserByUserId(connection.getUserId());
-
         connectionRepository.delete(connection);
         return connection;
-    }
-
-    public Optional<Connection> findByGroupIdAndUserId(Long groupId, Long userId) {
-        return connectionRepository.findByGroupIdAndUserId(groupId, userId);
     }
 
     public List<Group> findByGroupIdIn(List<Long> list) {
@@ -77,13 +61,5 @@ public class ConnectionService {
         List<User> res = userRepository.findByUserIdIn(list);
         if(res.size() != list.size()) throw new UserNotFoundException("User not found.");
         return res;
-    }
-    
-    public void checkGroupByGroupId(Long groupId) {
-        groupRepository.findById(groupId).orElseThrow(GroupNotFoundException::new);
-    }
-
-    public void checkUserByUserId(Long userId) {
-        userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 }

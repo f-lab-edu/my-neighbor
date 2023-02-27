@@ -6,6 +6,7 @@ import com.api.controller.user.UserMapper;
 import com.api.dto.ConnectionDto;
 import com.api.dto.GroupDto;
 import com.api.dto.UserDto;
+import com.api.event.GroupJoinPublisher;
 import com.api.model.connection.Connection;
 import com.api.service.connection.ConnectionService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,6 @@ import java.util.List;
 
 import static com.api.controller.ApiResult.Ok;
 import static com.api.controller.connection.ConnectionMapper.toDto;
-import static com.api.controller.connection.ConnectionMapper.toEntity;
 import static java.util.stream.Collectors.toList;
 
 @RestController
@@ -31,12 +31,12 @@ public class ConnectionController {
 
     private final ConnectionService connectionService;
 
-    // 사용자가 그룹 가입
+    private final GroupJoinPublisher groupJoinPublisher;
+
     @PostMapping("/join")
-    public ApiResult<ConnectionDto> connectionSave(@RequestBody ConnectionDto dto) {
-        return Ok(
-            toDto(connectionService.saveConnection(toEntity(dto)))
-        );
+    public ApiResult<String> pubConnectionSave(@RequestBody ConnectionDto dto) {
+        groupJoinPublisher.publish(dto);
+        return Ok("success");
     }
 
     // 특정 그룹에 가입된 사용자 전체 조회
