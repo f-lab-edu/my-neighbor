@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Clock;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -26,14 +25,6 @@ public class ConnectionService {
     private final GroupRepository groupRepository;
 
     private final UserRepository userRepository;
-
-    private final Clock clock;
-
-    @Transactional
-    public Connection saveConnection(Connection connection) {
-        connection.updateCreateAt(clock);
-        return connectionRepository.save(connection);
-    }
 
     public List<Long> findAllByGroupId(Long groupId) {
         List<Connection> res = connectionRepository.findAllByGroupId(groupId);

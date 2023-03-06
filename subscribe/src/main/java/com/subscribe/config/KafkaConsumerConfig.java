@@ -1,7 +1,7 @@
-package com.api.config;
+package com.subscribe.config;
 
-import com.api.dto.ConnectionDto;
-import com.api.serializers.ConnectionDtoDeSerializer;
+import com.subscribe.dto.ConnectionDto;
+import com.subscribe.serializers.ConnectionDtoDeSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
