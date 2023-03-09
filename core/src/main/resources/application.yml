@@ -1,0 +1,32 @@
+server:
+  port: 8099
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  kafka:
+    bootstrap-servers: 3.37.62.176:9092
+    #    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: my-neighbor
+
+##User defined Properties
+kafka:
+  #  topic: groupJoin-events
+  topic: embedded-test-topic
+
+

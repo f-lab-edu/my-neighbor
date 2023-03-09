@@ -17,6 +17,7 @@
 
     <modules>
         <module>api</module>
-        <module>subscribe</module>
+        <module>command</module>
+        <module>core</module>
     </modules>
 </project>
