@@ -16,5 +16,5 @@ public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 
     Optional<Connection> findByGroupIdAndUserId(Long groupId, Long userId);
 
-    void delete(Connection connection);
+    void deleteById(Long connectionId);
 }

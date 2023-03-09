@@ -38,8 +38,9 @@ public class ConnectionService {
 
     @Transactional
     public Connection deleteConnection(Connection connection) {
-        connectionRepository.delete(connection);
-        return connection;
+        Connection res = connectionRepository.findByGroupIdAndUserId(connection.getGroupId(), connection.getUserId()).orElseThrow(RuntimeException::new);
+        connectionRepository.deleteById(res.getConnectionId());
+        return res;
     }
 
     public List<Group> findByGroupIdIn(List<Long> list) {
