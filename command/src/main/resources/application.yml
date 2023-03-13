@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8082
 
 spring:
   datasource:
@@ -13,7 +13,6 @@ spring:
     #    bootstrap-servers: localhost:9092
     consumer:
       group-id: my-neighbor
-
 
 ##User defined Properties
 kafka:

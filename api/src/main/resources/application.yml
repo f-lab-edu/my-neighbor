@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost:8090/mem:test
@@ -11,8 +14,7 @@ spring:
     consumer:
       group-id: my-neighbor
 
-
-##User defined Properties
+## User defined Properties
 kafka:
     topic: groupJoin-events
 #  topic: embedded-test-topic
