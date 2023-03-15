@@ -1,4 +1,4 @@
-package com.nb.command;
+package com.nb.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

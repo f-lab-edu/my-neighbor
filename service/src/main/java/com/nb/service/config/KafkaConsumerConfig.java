@@ -1,7 +1,7 @@
-package com.nb.command.config;
+package com.nb.service.config;
 
-import com.nb.command.dto.ConnectionDto;
-import com.nb.command.serializers.ConnectionDtoDeSerializer;
+import com.nb.service.dto.ConnectionDto;
+import com.nb.service.serializers.ConnectionDtoDeSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

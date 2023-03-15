@@ -1,4 +1,4 @@
-package com.nb.command.service;
+package com.nb.service.service;
 
 import com.nb.core.model.connection.Connection;
 import com.nb.core.repository.connection.ConnectionRepository;

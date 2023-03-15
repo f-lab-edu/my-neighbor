@@ -1,6 +1,6 @@
-package com.nb.command.mapper;
+package com.nb.service.mapper;
 
-import com.nb.command.dto.ConnectionDto;
+import com.nb.service.dto.ConnectionDto;
 import com.nb.core.model.connection.Connection;
 
 public class ConnectionMapper {

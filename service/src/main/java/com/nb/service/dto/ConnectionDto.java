@@ -1,4 +1,4 @@
-package com.nb.command.dto;
+package com.nb.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package com.nb.command.serializers;
+package com.nb.service.serializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nb.command.dto.ConnectionDto;
+import com.nb.service.dto.ConnectionDto;
 import org.apache.kafka.common.serialization.Deserializer;
 
 public class ConnectionDtoDeSerializer implements Deserializer {
