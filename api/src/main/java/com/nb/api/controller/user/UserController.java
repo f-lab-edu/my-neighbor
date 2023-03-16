@@ -5,11 +5,13 @@ import com.nb.api.dto.JoinRequest;
 import com.nb.api.dto.UserDto;
 import com.nb.api.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.nb.api.controller.ApiResult.Ok;
@@ -56,6 +58,7 @@ public class UserController {
 
     // 회원 가입
     @PostMapping("join")
+    @ResponseStatus(HttpStatus.CREATED)
     public ApiResult<UserDto> join(@RequestBody JoinRequest request) {
         return Ok(
             toDto(
