@@ -1,5 +1,5 @@
 ### Join Group
-POST http://localhost/api/connection/join
+POST http://localhost:8080/api/connection/join
 Content-Type: application/json
 
 {
@@ -8,12 +8,12 @@ Content-Type: application/json
 }
 
 ### Get all users in a specific group
-GET http://localhost/api/connection/group/1
+GET http://localhost:8080/api/connection/group/1
 Accept: application/json
 
 ### Get all groups that a specific user is a member of
-GET http://localhost/api/connection/user/3
+GET http://localhost:8080/api/connection/user/3
 Accept: application/json
 
 ### Leave Group
-DELETE http://localhost/api/connection/1/1
+DELETE http://localhost:8080/api/connection/1/1

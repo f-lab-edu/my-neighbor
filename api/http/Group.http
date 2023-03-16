@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Update group
-PATCH http://localhost/api/group
+PATCH http://localhost:8080/api/group
 Content-Type: application/json
 
 {
@@ -32,12 +32,12 @@ Content-Type: application/json
 }
 
 ### Delete group
-DELETE http://localhost/api/group/1
+DELETE http://localhost:8080/api/group/1
 
 
 
 ### Get all posts in a specific group
-GET http://localhost/api/post/1
+GET http://localhost:8080/api/post/1
 Accept: application/json
 
 ### Create post
@@ -58,7 +58,7 @@ PATCH http://localhost/api/post
 Content-Type: application/json
 
 {
-  "postId": 1,
+  "postId": 13,
   "groupId": 1,
   "contents": "update content",
   "publicType": "PUBLIC"

@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers: 3.37.62.176:9092
+    consumer:
+      group-id: my-neighbor
+
+## User defined Properties
+kafka:
+    topic: groupJoin-events
